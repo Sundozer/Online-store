@@ -1,0 +1,4 @@
+cd ...
+npm install
+crlf to lf
+npm run dev      для запуска сервера
