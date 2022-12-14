@@ -1,3 +1,4 @@
 import './style.scss';
+import data from './data';
 
-console.log('Hello world');
+console.log(data.products[0].title);
