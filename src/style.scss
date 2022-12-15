@@ -9,7 +9,7 @@ $black: black;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(48, 68, 124);
+  background-color: rgb(55, 28, 66);
   color: white;
 }
 .container {
@@ -36,4 +36,7 @@ $black: black;
 .footer {
   width: 100%;
   background-color: $black;
+}
+.item-image {
+  width: 150px;
 }
