@@ -25,11 +25,12 @@ $black: black;
   flex-grow: 1;
   display: flex;
   min-width: 100%;
+  justify-content: space-between;
   .aside {
-    flex-grow: 1;
+    width: 18%;
   }
   .main {
-    flex-grow: 5;
+    width: 88%;
   }
 }
 
