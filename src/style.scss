@@ -1,4 +1,32 @@
-$black: black;
+$header-footer: black;
+$main-color-page: rgb(55, 28, 66);
+$borders: gold;
+$aside-block-back: rgb(99, 0, 0);
+
+/*Scroll bar nav*/
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-border-radius: 10px;
+  border-radius: 5px;
+  background:#FFF;    
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 5px;
+  background: $aside-block-back;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(204,204,204,0.4); 
+}
+
 
 
 .body {
@@ -9,16 +37,17 @@ $black: black;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(55, 28, 66);
+  background-color: $main-color-page;
   color: white;
 }
 .container {
   width: 1160px;
   margin: auto;
   display: flex;
+  height: 100%;
 }
 .header {
-  background-color: $black;
+  background-color: $header-footer;
   width: 100%;
 }
 .central {
@@ -36,8 +65,51 @@ $black: black;
 
 .footer {
   width: 100%;
-  background-color: $black;
+  background-color: $header-footer;
 }
 .item-image {
   width: 150px;
+}
+
+.aside-block {
+  border: 2px solid $borders;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  // .aside-block_category {
+  //   height: 150px;
+  //   overflow: hidden;
+  // }
+  .aside-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .aside-block__general {
+    border: 2px solid $borders;
+    border-radius: 8px;
+    width: 92%;
+    .aside-block_title {
+      width: 100%;
+      background-color: black;
+      border-radius: 8px;
+    }
+    .aside-block_item-category {
+      width: 100%;
+      background-color: $aside-block-back;
+    }
+    .aside-block_item-marks {
+      background-color: $aside-block-back;
+    }
+    .aside-block_item-types {
+      height: 150px;
+      overflow-y: scroll;
+    }
+  }
+}
+.aside-block_one-of-items {
+  cursor: pointer;
 }
