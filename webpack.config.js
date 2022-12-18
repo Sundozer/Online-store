@@ -6,12 +6,22 @@ const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const devServer = (isDev) => !isDev ? {} : {
+  // devServer: {
+  //   open: true,
+  //   port: 8080,
+  //   contentBase: path.join(__dirname, 'public'),
+  // },
   devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
     open: true,
+    compress: true,
     port: 8080,
-    contentBase: path.join(__dirname, './'),
   },
 };
+
+
 
 const esLintPlugin = (isDev) => isDev ? [] : [ new ESLintPlugin({ extensions: ['ts', 'js'] }) ];
 
@@ -23,7 +33,7 @@ module.exports = ({ development }) => ({
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
     assetModuleFilename: 'assets/[hash][ext]',
   },
   module: {
