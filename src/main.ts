@@ -2,6 +2,7 @@ import data from './data';
 
 const mainContainerCards = document.querySelector('.main-container-cards');
 
+
 export function createCardsProduct() {
     if (mainContainerCards !== null) {
       for (const key in data.products) {
@@ -17,17 +18,27 @@ function createCardProduct(key: number, mainContainerCards:Element) {
   const framesСard = document.createElement('div');
   framesСard.classList.add('frames-card');
   mainContainerCards.append(framesСard);
-  // framesСard.style.backgroundImage = `"url(${data.products[key].images[0]})"`;
+  addBackgroundImg(key,framesСard);
+  addHeaderCard(key,framesСard);
+  addDescriptionCard(key,framesСard);
+}
+
+function addBackgroundImg(key: number,framesСard: HTMLElement){
   framesСard.style.background = `url(${data.products[key].images[0]})`;
   framesСard.style.backgroundRepeat = "no-repeat";
   framesСard.style.backgroundSize = "cover";
-
-  // const img = document.createElement('img');
-  // img.src = data.products[key].images[0];
-  // img.classList.add('item-image');
-  // framesСard.append(img);
-
-
+}
+function addHeaderCard(key: number,framesСard: HTMLElement){
+  const headerСard = document.createElement('div');
+  framesСard.append(headerСard);
+  headerСard.classList.add('header-card');
+  headerСard.textContent = data.products[key].title;
+}
+function addDescriptionCard(key: number,framesСard: HTMLElement){
+  const descriptionCard = document.createElement('div');
+  framesСard.append(descriptionCard);
+  descriptionCard.classList.add('description-card');
+  
 }
 
 
