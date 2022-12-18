@@ -58,10 +58,9 @@ $aside-block-back: rgb(99, 0, 0);
   .aside {
     width: 18%;
   }
-  .main {
-    width: 88%;
-  }
+  
 }
+
 
 .footer {
   width: 100%;
@@ -69,47 +68,4 @@ $aside-block-back: rgb(99, 0, 0);
 }
 .item-image {
   width: 150px;
-}
-
-.aside-block {
-  border: 2px solid $borders;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  // .aside-block_category {
-  //   height: 150px;
-  //   overflow: hidden;
-  // }
-  .aside-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .aside-block__general {
-    border: 2px solid $borders;
-    border-radius: 8px;
-    width: 92%;
-    .aside-block_title {
-      width: 100%;
-      background-color: black;
-      border-radius: 8px;
-    }
-    .aside-block_item-category {
-      width: 100%;
-      background-color: $aside-block-back;
-    }
-    .aside-block_item-marks {
-      background-color: $aside-block-back;
-    }
-    .aside-block_item-types {
-      height: 150px;
-      overflow-y: scroll;
-    }
-  }
-}
-.aside-block_one-of-items {
-  cursor: pointer;
 }
