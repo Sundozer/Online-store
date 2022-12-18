@@ -1,9 +1,13 @@
 import './scss/style.scss';
 import './scss/style-main.scss';
 import './scss/style-elements.scss';
+import './scss/style-card.scss';
 import data from './data';
 
-const mainContainerCards = document.querySelector('.main-container-cards');
+import {createCardsProduct} from './main';
+
+createCardsProduct();
+
 const asideBlock = document.querySelector('.aside-block');
 const activeFilters = {
   category: undefined,
@@ -12,19 +16,7 @@ const activeFilters = {
   stock: undefined,
 };
 
-function createCardsProduct() {
-  if (mainContainerCards !== null) {
-    for (const key in data.products) {
-      if (Object.prototype.hasOwnProperty.call(data.products, key)) {
-        const img = document.createElement('img');
-        img.src = data.products[key].images[0];
-        img.classList.add('item-image');
-        mainContainerCards.appendChild(img);
-      }
-    }
-  }
-}
-createCardsProduct();
+
 
 (function category() {
   const arr: string[] = [];
