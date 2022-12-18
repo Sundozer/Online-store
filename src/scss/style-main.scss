@@ -2,7 +2,12 @@
   width: 88%;
   border: 2px solid rgb(255, 115, 0);
 }
-
+.main-header {
+  height: 40px;
+  border-bottom: 2px solid rgb(255, 115, 0);
+  display: flex;
+  
+}
 .main-container-cards {
   display: flex;
   flex-wrap: wrap;
@@ -11,6 +16,13 @@
 }
 
 .item-image {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
+}
+
+.span-main-header {
+
+}
+.span-count {
+  
 }

@@ -1,5 +1,6 @@
-import './style.scss';
-import './style-main.scss';
+import './scss/style.scss';
+import './scss/style-main.scss';
+import './scss/style-elements.scss';
 import data from './data';
 
 const mainContainerCards = document.querySelector('.main-container-cards');
