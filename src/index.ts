@@ -1,13 +1,30 @@
-import './style.scss';
+import './scss/style.scss';
+import './scss/style-main.scss';
+import './scss/style-elements.scss';
 import data from './data';
-const main = document.querySelector('.main');
+
+const mainContainerCards = document.querySelector('.main-container-cards');
 const asideBlock = document.querySelector('.aside-block');
 const activeFilters = {
   category: undefined,
   brand: undefined,
   price: undefined,
-  stock: undefined
+  stock: undefined,
 };
+
+function createCardsProduct() {
+  if (mainContainerCards !== null) {
+    for (const key in data.products) {
+      if (Object.prototype.hasOwnProperty.call(data.products, key)) {
+        const img = document.createElement('img');
+        img.src = data.products[key].images[0];
+        img.classList.add('item-image');
+        mainContainerCards.appendChild(img);
+      }
+    }
+  }
+}
+createCardsProduct();
 
 (function category() {
   const arr: string[] = [];
@@ -34,14 +51,13 @@ const activeFilters = {
   }
 }());
 
-asideBlock!.addEventListener('click', function(event){
-  const e = event.target as HTMLElement
+asideBlock!.addEventListener('click', (event) => {
+  const e = event.target as HTMLElement;
   if (e.tagName === 'SPAN') {
-    let checkbox = document.getElementById(`${e.id}`) as HTMLInputElement;
+    const checkbox = document.getElementById(`${e.id}`) as HTMLInputElement;
     checkbox.checked = true;
   }
   if (e.tagName === 'INPUT') {
-    console.log(e.id)
+    console.log(e.id);
   }
-  
-})
+});
