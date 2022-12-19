@@ -56,12 +56,10 @@ input[type=range]::-webkit-slider-thumb {
   height: 15px;
   width: 15px;
   border-radius: 100%;
-  background: $borders;
+  background: $aside-block-back;
   cursor: pointer;
   margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
-  position: relative;
-  z-index: 10;
 }
 
 /* All the same stuff for Firefox */
@@ -130,9 +128,10 @@ input[type=range]::-ms-thumb {
   .aside {
     width: 18%;
   }
-  
+  .main {
+    width: 88%;
+  }
 }
-
 
 .footer {
   width: 100%;
@@ -167,7 +166,6 @@ input[type=range]::-ms-thumb {
     height: 20%;
     overflow-y: hidden;
     position: relative;
-    background-color: $aside-block-back;
     .aside-block_title {
       width: 100%;
       background-color: black;
@@ -196,7 +194,7 @@ input[type=range]::-ms-thumb {
       background-color: white;
       position: absolute;
       top: 79%;
-      z-index: 5;
+      z-index: -5;
       left: 5px;
     }
     .price-numbers {
@@ -215,6 +213,3 @@ input[type=range]::-ms-thumb {
 .aside-block_one-of-items {
   cursor: pointer;
 }
-
-
-
