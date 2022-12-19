@@ -3,7 +3,7 @@ import './scss/style-main.scss';
 import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
-
+import newData from './newData'
 import { createCardsProduct } from './main';
 
 createCardsProduct();
@@ -84,7 +84,7 @@ function placeToStorage() {
   localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
 }
 
-asideBlock!.addEventListener('click', (event) => {
+asideBlock!.addEventListener('click', (event) => { // Ставит и убирает галки в чекбоксах, заполняет первые две строки активного фильтра
   const e = event.target as HTMLElement;
   if (e.tagName === 'SPAN') {
     const checkbox = document.getElementById(`${e.innerHTML}`) as HTMLInputElement;
@@ -112,7 +112,7 @@ asideBlock!.addEventListener('click', (event) => {
   }
 });
 
-function getPrices() {
+function getPrices() { // Создаёт цифры в блоках в зависимости от положения ползунков
   document.querySelector('.lowest-price')!.innerHTML = Math.min.apply(null, activeFilter.price).toString();
   document.querySelector('.highest-price')!.innerHTML = Math.max.apply(null, activeFilter.price).toString();
 }
@@ -125,7 +125,7 @@ const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 
-input1.addEventListener('input', () => {
+input1.addEventListener('input', () => { //считывает ползунки
   activeFilter.price[0] = Number(input1.value);
   getPrices();
   placeToStorage();
@@ -146,7 +146,7 @@ input4.addEventListener('input', () => {
   placeToStorage();
 });
 
-function placeRanges() {
+function placeRanges() { // размещает полузнки на треках, когда загружается страница
   input1.value = Math.min.apply(null, activeFilter.price).toString();
   input2.value = Math.max.apply(null, activeFilter.price).toString();
   input3.value = Math.min.apply(null, activeFilter.stock).toString();
@@ -155,7 +155,7 @@ function placeRanges() {
   getStocks();
 }
 placeRanges();
-function placeCheckBoxes() {
+function placeCheckBoxes() { // ставит галки на чекбоксах, когда загружается страница
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = true;
@@ -166,7 +166,7 @@ function placeCheckBoxes() {
   });
 }
 placeCheckBoxes();
-document.querySelector('.reset-filters')!.addEventListener('click', () => {
+document.querySelector('.reset-filters')!.addEventListener('click', () => { // кнопка сброса фильтров, снимает все чеки, возвращает ползунки на место, очищает активный фильтр
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
@@ -180,3 +180,5 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => {
   placeRanges();
   placeToStorage();
 });
+// const filteredData = newData(data.products)
+
