@@ -36,12 +36,7 @@ let activeFilter: FilterItems = {
   price: [],
   stock: [],
 };
-const staticFilter: FilterItems = {
-  category: [],
-  brand: [],
-  price: [],
-  stock: [],
-};
+
 const separator: Separator = {
   category: [],
   brand: [],
@@ -71,21 +66,12 @@ const separator: Separator = {
       document.querySelector('.aside-block_item-brands')!.innerHTML += `<input type="checkbox" id="${i.brand}" name="${i.brand}"><span class="aside-block_one-of-items">${i.brand}</span><br>`;
       separator.brand.push(i.brand);
     }
-    if (staticFilter.price[0] === undefined || staticFilter.price[0] > i.price) { // тут заполняется статический фильтр
-      staticFilter.price[0] = i.price;
-    }
-    if (staticFilter.price[1] === undefined || staticFilter.price[1] < i.price) {
-      staticFilter.price[1] = i.price;
-    }
-    if (staticFilter.stock[0] === undefined || staticFilter.stock[0] > i.stock) {
-      staticFilter.stock[0] = i.stock;
-    }
-    if (staticFilter.stock[1] === undefined || staticFilter.stock[1] < i.stock) {
-      staticFilter.stock[1] = i.stock;
-    }
   }
   if (localStorage.getItem('activeFilter') === null) {
-    activeFilter = staticFilter;
+    activeFilter = {category: [],
+      brand: [],
+      price: [10, 1749],
+      stock: [2, 150]};
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
   }
@@ -99,7 +85,6 @@ function getNewData() {
       filteredData.push(getting);
     }
   });
-  console.log(filteredData.length);
 }
 
 function placeToStorage() {
@@ -198,7 +183,10 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
   });
-  activeFilter = staticFilter;
+  activeFilter = {category: [],
+    brand: [],
+    price: [10, 1749],
+    stock: [2, 150],};
   getPrices();
   placeRanges();
   placeToStorage();

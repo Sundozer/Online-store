@@ -17,7 +17,7 @@ export default function (object: FilterObject, activeFilter: { category: string[
   if (activeFilter.category.length === 0) {
     cat = categories;
   }
-  let { brand } = activeFilter;
+  let brand: string[] = activeFilter.brand;
   if (activeFilter.brand.length === 0) {
     brand = brands;
   }
@@ -27,10 +27,12 @@ export default function (object: FilterObject, activeFilter: { category: string[
   if (object.stock > Math.max.apply(null, activeFilter.stock) || object.stock < Math.min.apply(null, activeFilter.stock)) {
     return undefined;
   }
-  
-
-
-
+  if (!cat.includes(object.category)) {
+    return undefined;
+  }
+  if (!brand.includes(object.brand)) {
+    return undefined;
+  }
   return object;
 }
-// here objects transform to filtered object
+// here objects transform to filtered objects
