@@ -166,3 +166,17 @@ function placeCheckBoxes() {
   });
 }
 placeCheckBoxes();
+document.querySelector('.reset-filters')!.addEventListener('click', () => {
+  activeFilter.category.forEach((el) => {
+    const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
+    oneOfBoxes.checked = false;
+  });
+  activeFilter.brand.forEach((el) => {
+    const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
+    oneOfBoxes.checked = false;
+  });
+  activeFilter = staticFilter;
+  getPrices();
+  placeRanges();
+  placeToStorage();
+});
