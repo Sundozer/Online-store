@@ -17,7 +17,7 @@ export default function (object: FilterObject, activeFilter: { category: string[
   if (activeFilter.category.length === 0) {
     cat = categories;
   }
-  let brand: string[] = activeFilter.brand;
+  let { brand } = activeFilter;
   if (activeFilter.brand.length === 0) {
     brand = brands;
   }

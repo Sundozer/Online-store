@@ -7,6 +7,10 @@ import newData from './newData';
 import { createCardsProduct } from './main';
 
 createCardsProduct();
+// Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
+// createCardsProduct(data.products)
+// Чтобы она не брала дату сама по себе напрямую.
+// Потому что я уже настроил фильтр, он выдаёт массив 'filteredData', её надо закидывать в твою функцию
 
 const asideBlock = document.querySelector('.aside-block');
 let filteredData: { id: number,
@@ -68,19 +72,21 @@ const separator: Separator = {
     }
   }
   if (localStorage.getItem('activeFilter') === null) {
-    activeFilter = {category: [],
+    activeFilter = {
+      category: [],
       brand: [],
       price: [10, 1749],
-      stock: [2, 150]};
+      stock: [2, 150],
+    };
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
   }
 }());
 
 function getNewData() {
-  filteredData = []
+  filteredData = [];
   data.products.forEach((el) => {
-    let getting = newData(el, activeFilter, separator.category, separator.brand);
+    const getting = newData(el, activeFilter, separator.category, separator.brand);
     if (getting !== undefined) {
       filteredData.push(getting);
     }
@@ -183,10 +189,12 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
   });
-  activeFilter = {category: [],
+  activeFilter = {
+    category: [],
     brand: [],
     price: [10, 1749],
-    stock: [2, 150],};
+    stock: [2, 150],
+  };
   getPrices();
   placeRanges();
   placeToStorage();
