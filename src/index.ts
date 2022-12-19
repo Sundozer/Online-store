@@ -3,12 +3,23 @@ import './scss/style-main.scss';
 import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
-import newData from './newData'
+import newData from './newData';
 import { createCardsProduct } from './main';
 
 createCardsProduct();
 
 const asideBlock = document.querySelector('.aside-block');
+let filteredData: { id: number,
+  title: string,
+  description: string,
+  price: number,
+  discountPercentage: number,
+  rating: number,
+  stock: number,
+  brand: string,
+  category: string,
+  thumbnail: string,
+  images: string[] }[] = [];
 type FilterItems = {
   category: string[],
   brand: string[],
@@ -80,8 +91,20 @@ const separator: Separator = {
   }
 }());
 
+function getNewData() {
+  filteredData = []
+  data.products.forEach((el) => {
+    let getting = newData(el, activeFilter, separator.category, separator.brand);
+    if (getting !== undefined) {
+      filteredData.push(getting);
+    }
+  });
+  console.log(filteredData.length);
+}
+
 function placeToStorage() {
   localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
+  getNewData();
 }
 
 asideBlock!.addEventListener('click', (event) => { // Ставит и убирает галки в чекбоксах, заполняет первые две строки активного фильтра
@@ -125,7 +148,7 @@ const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 
-input1.addEventListener('input', () => { //считывает ползунки
+input1.addEventListener('input', () => { // считывает ползунки
   activeFilter.price[0] = Number(input1.value);
   getPrices();
   placeToStorage();
@@ -180,5 +203,3 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
   placeRanges();
   placeToStorage();
 });
-// const filteredData = newData(data.products)
-
