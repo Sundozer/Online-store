@@ -18,7 +18,7 @@ type FilterItems = {
 type Separator = {
   category: string[],
   brand: string[]
-}
+};
 let activeFilter: FilterItems = {
   category: [],
   brand: [],
@@ -36,7 +36,6 @@ const separator: Separator = {
   brand: [],
 };
 
-
 (function category() {
   const arr: string[] = [];
   const array: string[] = [];
@@ -53,13 +52,13 @@ const separator: Separator = {
       arr.push(i.category);
       document.querySelector('.aside-block_item-types')!.appendChild(div);
       document.querySelector('.aside-block_item-category')!.innerHTML += `<input type="checkbox" id="${i.category}" name="${i.category}"><span class="aside-block_one-of-items">${i.category}</span><br>`;
-      separator.category.push(i.category)
+      separator.category.push(i.category);
     }
     if (!array.includes(i.brand)) {
       array.push(i.brand);
       document.querySelector('.aside-block_item-marks')!.appendChild(divv);
       document.querySelector('.aside-block_item-brands')!.innerHTML += `<input type="checkbox" id="${i.brand}" name="${i.brand}"><span class="aside-block_one-of-items">${i.brand}</span><br>`;
-      separator.brand.push(i.brand)
+      separator.brand.push(i.brand);
     }
     if (staticFilter.price[0] === undefined || staticFilter.price[0] > i.price) { // тут заполняется статический фильтр
       staticFilter.price[0] = i.price;
@@ -92,22 +91,22 @@ asideBlock!.addEventListener('click', (event) => {
     if (checkbox.checked) {
       checkbox.checked = false;
       if (separator.category.includes(e.innerHTML)) {
-        activeFilter.category.splice(activeFilter.category.indexOf(e.innerHTML), 1)
-        placeToStorage()
+        activeFilter.category.splice(activeFilter.category.indexOf(e.innerHTML), 1);
+        placeToStorage();
       }
       if (separator.brand.includes(e.innerHTML)) {
-        activeFilter.brand.splice(activeFilter.brand.indexOf(e.innerHTML), 1)
-        placeToStorage()
+        activeFilter.brand.splice(activeFilter.brand.indexOf(e.innerHTML), 1);
+        placeToStorage();
       }
     } else if (!checkbox.checked) {
       checkbox.checked = true;
       if (separator.category.includes(e.innerHTML)) {
-        activeFilter.category.push(e.innerHTML)
-        placeToStorage()
+        activeFilter.category.push(e.innerHTML);
+        placeToStorage();
       }
       if (separator.brand.includes(e.innerHTML)) {
-        activeFilter.brand.push(e.innerHTML)
-        placeToStorage()
+        activeFilter.brand.push(e.innerHTML);
+        placeToStorage();
       }
     }
   }
@@ -129,22 +128,22 @@ const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 input1.addEventListener('input', () => {
   activeFilter.price[0] = Number(input1.value);
   getPrices();
-  placeToStorage()
+  placeToStorage();
 });
 input2.addEventListener('input', () => {
   activeFilter.price[1] = Number(input2.value);
   getPrices();
-  placeToStorage()
+  placeToStorage();
 });
 input3.addEventListener('input', () => {
   activeFilter.stock[0] = Number(input3.value);
   getStocks();
-  placeToStorage()
+  placeToStorage();
 });
 input4.addEventListener('input', () => {
   activeFilter.stock[1] = Number(input4.value);
   getStocks();
-  placeToStorage()
+  placeToStorage();
 });
 
 function placeRanges() {
@@ -156,3 +155,14 @@ function placeRanges() {
   getStocks();
 }
 placeRanges();
+function placeCheckBoxes() {
+  activeFilter.category.forEach((el) => {
+    const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
+    oneOfBoxes.checked = true;
+  });
+  activeFilter.brand.forEach((el) => {
+    const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
+    oneOfBoxes.checked = true;
+  });
+}
+placeCheckBoxes();
