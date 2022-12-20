@@ -6,7 +6,6 @@ import data from './data';
 import newData from './newData';
 import { createCardsProduct, deleteCardsProduct } from './main';
 
-
 // Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
 // createCardsProduct(data.products)
 // Чтобы она не брала дату сама по себе напрямую.
@@ -46,6 +45,18 @@ const separator: Separator = {
   brand: [],
 };
 
+function getNewData() {
+  filteredData = [];
+  data.products.forEach((el) => {
+    const getting = newData(el, activeFilter, separator.category, separator.brand);
+    if (getting !== undefined) {
+      filteredData.push(getting);
+    }
+  });
+  deleteCardsProduct();// удаление карточек перед формированием нового набора
+  createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
+}
+
 (function category() {
   const arr: string[] = [];
   const array: string[] = [];
@@ -81,20 +92,8 @@ const separator: Separator = {
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
   }
+  getNewData();
 }());
-
-function getNewData() {
-  filteredData = [];
-  data.products.forEach((el) => {
-    const getting = newData(el, activeFilter, separator.category, separator.brand);
-    if (getting !== undefined) {
-      filteredData.push(getting);
-    }
-  });
-  deleteCardsProduct();//удаление карточек перед формированием нового набора
-  createCardsProduct(filteredData);//вызов функции добавил сюда, верно ли, исходя из логики?
-  console.log(filteredData);
-}
 
 function placeToStorage() {
   localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
@@ -202,5 +201,3 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
   placeRanges();
   placeToStorage();
 });
-
-//createCardsProduct(filteredData);

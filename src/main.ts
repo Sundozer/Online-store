@@ -31,11 +31,11 @@ function createCardProduct(key: number, pmainContainerCards:Element) {
 }
 export function createCardsProduct(objectCardsFilter: object) {
   if (mainContainerCards !== null) {
-        Object.keys(objectCardsFilter).forEach((key) => {
-          createCardProduct(+key, mainContainerCards);
-        });
-      }
-    }
+    Object.keys(objectCardsFilter).forEach((key) => {
+      createCardProduct(+key, mainContainerCards);
+    });
+  }
+}
 
 export function deleteCardsProduct() {
   if (mainContainerCards !== null) {

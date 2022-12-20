@@ -110,7 +110,7 @@ input[type=range]::-ms-thumb {
   color: white;
 }
 .container {
-  width: 1160px;
+  width: 99vw;
   margin: auto;
   display: flex;
   height: 100%;
@@ -123,9 +123,8 @@ input[type=range]::-ms-thumb {
   width: 100%;
 }
 .central {
-  flex-grow: 1;
-  display: flex;
   min-width: 100%;
+  min-height: 100vh;
   justify-content: space-between;
   .aside {
     width: 18%;
