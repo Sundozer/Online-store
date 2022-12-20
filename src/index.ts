@@ -7,13 +7,15 @@ import newData from './newData';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData } from './interfaces';
 
-
 // Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
 // createCardsProduct(data.products)
 // Чтобы она не брала дату сама по себе напрямую.
 // Потому что я уже настроил фильтр, он выдаёт массив 'filteredData', её надо закидывать в твою функцию
-
 const asideBlock = document.querySelector('.aside-block');
+const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
+const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
+const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
+const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 let filteredData: IFilteredData[] = [];
 type FilterItems = {
   category: string[],
@@ -36,6 +38,57 @@ const separator: Separator = {
   category: [],
   brand: [],
 };
+
+function upperFilter() {
+  let minPrice: number | undefined;
+  let maxPrice: number | undefined;
+  let minStock: number | undefined;
+  let maxStock: number | undefined;
+  filteredData.forEach((el) => {
+    if (minPrice === undefined) {
+      minPrice = el.price;
+    } else if (minPrice > el.price) {
+      minPrice = el.price;
+    }
+    if (maxPrice === undefined) {
+      maxPrice = el.price;
+    } else if (maxPrice < el.price) {
+      maxPrice = el.price;
+    }
+
+    if (minStock === undefined) {
+      minStock = el.stock;
+    } else if (minStock > el.stock) {
+      minStock = el.stock;
+    }
+    if (maxStock === undefined) {
+      maxStock = el.stock;
+    } else if (maxStock < el.stock) {
+      maxStock = el.stock;
+    }
+  });
+  document.querySelector('.lowest-price')!.innerHTML = minPrice!.toString();
+  document.querySelector('.highest-price')!.innerHTML = maxPrice!.toString();
+  document.querySelector('.lowest-stock')!.innerHTML = minStock!.toString();
+  document.querySelector('.highest-stock')!.innerHTML = maxStock!.toString();
+  input1.value = minPrice!.toString();
+  input2.value = maxPrice!.toString();
+  input3.value = minStock!.toString();
+  input4.value = maxStock!.toString();
+}
+
+function getNewData() {
+  filteredData = [];
+  data.products.forEach((el) => {
+    const getting = newData(el, activeFilter, separator.category, separator.brand);
+    if (getting !== undefined) {
+      filteredData.push(getting);
+    }
+  });
+  deleteCardsProduct();// удаление карточек перед формированием нового набора
+  createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
+  upperFilter();
+}
 
 (function category() {
   const arr: string[] = [];
@@ -72,20 +125,8 @@ const separator: Separator = {
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
   }
+  getNewData();
 }());
-
-function getNewData() {
-  filteredData = [];
-  data.products.forEach((el) => {
-    const getting = newData(el, activeFilter, separator.category, separator.brand);
-    if (getting !== undefined) {
-      filteredData.push(getting);
-    }
-  });
-  deleteCardsProduct();//удаление карточек перед формированием нового набора
-  createCardsProduct(filteredData);//вызов функции добавил сюда, верно ли, исходя из логики?
-  console.log(filteredData);
-}
 
 function placeToStorage() {
   localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
@@ -118,6 +159,28 @@ asideBlock!.addEventListener('click', (event) => { // Ставит и убира
       }
     }
   }
+  if (e.tagName === 'INPUT' && e.id.length > 0) {
+    const che = e as HTMLInputElement;
+    if (!che.checked) {
+      if (separator.category.includes(che.id)) {
+        activeFilter.category.splice(activeFilter.category.indexOf(che.id), 1);
+        placeToStorage();
+      }
+      if (separator.brand.includes(che.id)) {
+        activeFilter.brand.splice(activeFilter.brand.indexOf(che.id), 1);
+        placeToStorage();
+      }
+    } else if (che.checked) {
+      if (separator.category.includes(che.id)) {
+        activeFilter.category.push(che.id);
+        placeToStorage();
+      }
+      if (separator.brand.includes(che.id)) {
+        activeFilter.brand.push(che.id);
+        placeToStorage();
+      }
+    }
+  }
 });
 
 function getPrices() { // Создаёт цифры в блоках в зависимости от положения ползунков
@@ -128,10 +191,6 @@ function getStocks() {
   document.querySelector('.lowest-stock')!.innerHTML = Math.min.apply(null, activeFilter.stock).toString();
   document.querySelector('.highest-stock')!.innerHTML = Math.max.apply(null, activeFilter.stock).toString();
 }
-const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
-const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
-const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
-const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 
 input1.addEventListener('input', () => { // считывает ползунки
   activeFilter.price[0] = Number(input1.value);
@@ -193,5 +252,3 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
   placeRanges();
   placeToStorage();
 });
-
-//createCardsProduct(filteredData);
