@@ -12,6 +12,10 @@ import { createCardsProduct, deleteCardsProduct } from './main';
 // Потому что я уже настроил фильтр, он выдаёт массив 'filteredData', её надо закидывать в твою функцию
 
 const asideBlock = document.querySelector('.aside-block');
+const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
+const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
+const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
+const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 let filteredData: { id: number,
   title: string,
   description: string,
@@ -86,6 +90,10 @@ function getNewData() {
   document.querySelector('.highest-price')!.innerHTML = maxPrice!.toString();
   document.querySelector('.lowest-stock')!.innerHTML = minStock!.toString();
   document.querySelector('.highest-stock')!.innerHTML = maxStock!.toString();
+  input1.value = minPrice!.toString();
+  input2.value = maxPrice!.toString();
+  input3.value = minStock!.toString();
+  input4.value = maxStock!.toString();
 
 }
 
@@ -190,10 +198,6 @@ function getStocks() {
   document.querySelector('.lowest-stock')!.innerHTML = Math.min.apply(null, activeFilter.stock).toString();
   document.querySelector('.highest-stock')!.innerHTML = Math.max.apply(null, activeFilter.stock).toString();
 }
-const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
-const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
-const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
-const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
 
 input1.addEventListener('input', () => { // считывает ползунки
   activeFilter.price[0] = Number(input1.value);
