@@ -127,7 +127,7 @@ input[type=range]::-ms-thumb {
   min-height: 100vh;
   justify-content: space-between;
   .aside {
-    width: 18%;
+    width: 22%;
   }
   
 }
@@ -148,7 +148,7 @@ input[type=range]::-ms-thumb {
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  height: 90vh;
   
   // .aside-block_category {
   //   height: 150px;
@@ -163,7 +163,7 @@ input[type=range]::-ms-thumb {
     border: 2px solid $borders;
     border-radius: 8px;
     width: 92%;
-    height: 20%;
+    height: 25%;
     overflow-y: hidden;
     position: relative;
     background-color: $aside-block-back;

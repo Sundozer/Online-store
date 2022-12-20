@@ -49,16 +49,7 @@ const separator: Separator = {
   brand: [],
 };
 
-function getNewData() {
-  filteredData = [];
-  data.products.forEach((el) => {
-    const getting = newData(el, activeFilter, separator.category, separator.brand);
-    if (getting !== undefined) {
-      filteredData.push(getting);
-    }
-  });
-  deleteCardsProduct();// удаление карточек перед формированием нового набора
-  createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
+function upperFilter() {
   let minPrice: number | undefined = undefined;
   let maxPrice: number | undefined = undefined;
   let minStock: number | undefined = undefined;
@@ -94,7 +85,19 @@ function getNewData() {
   input2.value = maxPrice!.toString();
   input3.value = minStock!.toString();
   input4.value = maxStock!.toString();
+}
 
+function getNewData() {
+  filteredData = [];
+  data.products.forEach((el) => {
+    const getting = newData(el, activeFilter, separator.category, separator.brand);
+    if (getting !== undefined) {
+      filteredData.push(getting);
+    }
+  });
+  deleteCardsProduct();// удаление карточек перед формированием нового набора
+  createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
+  upperFilter();
 }
 
 (function category() {
