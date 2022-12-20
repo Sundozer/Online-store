@@ -126,6 +126,28 @@ asideBlock!.addEventListener('click', (event) => { // Ставит и убира
       }
     }
   }
+  if (e.tagName === 'INPUT' && e.id.length > 0) {
+    const che = e as HTMLInputElement;
+    if (!che.checked) {
+      if (separator.category.includes(che.id)) {
+        activeFilter.category.splice(activeFilter.category.indexOf(che.id), 1);
+        placeToStorage();
+      }
+      if (separator.brand.includes(che.id)) {
+        activeFilter.brand.splice(activeFilter.brand.indexOf(che.id), 1);
+        placeToStorage();
+      }
+    } else if (che.checked) {
+      if (separator.category.includes(che.id)) {
+        activeFilter.category.push(che.id);
+        placeToStorage();
+      }
+      if (separator.brand.includes(che.id)) {
+        activeFilter.brand.push(che.id);
+        placeToStorage();
+      }
+    }
+  }
 });
 
 function getPrices() { // Создаёт цифры в блоках в зависимости от положения ползунков
