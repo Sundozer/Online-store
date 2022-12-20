@@ -4,9 +4,9 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
-import { createCardsProduct } from './main';
+import { createCardsProduct, deleteCardsProduct } from './main';
 
-createCardsProduct();
+
 // Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
 // createCardsProduct(data.products)
 // Чтобы она не брала дату сама по себе напрямую.
@@ -91,6 +91,9 @@ function getNewData() {
       filteredData.push(getting);
     }
   });
+  deleteCardsProduct();//удаление карточек перед формированием нового набора
+  createCardsProduct(filteredData);//вызов функции добавил сюда, верно ли, исходя из логики?
+  console.log(filteredData);
 }
 
 function placeToStorage() {
@@ -199,3 +202,5 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
   placeRanges();
   placeToStorage();
 });
+
+//createCardsProduct(filteredData);
