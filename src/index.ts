@@ -5,28 +5,18 @@ import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
 import { createCardsProduct, deleteCardsProduct } from './main';
+import { IFilteredData } from './interfaces';
 
 // Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
 // createCardsProduct(data.products)
 // Чтобы она не брала дату сама по себе напрямую.
 // Потому что я уже настроил фильтр, он выдаёт массив 'filteredData', её надо закидывать в твою функцию
-
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock1')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock2')! as HTMLInputElement;
-let filteredData: { id: number,
-  title: string,
-  description: string,
-  price: number,
-  discountPercentage: number,
-  rating: number,
-  stock: number,
-  brand: string,
-  category: string,
-  thumbnail: string,
-  images: string[] }[] = [];
+let filteredData: IFilteredData[] = [];
 type FilterItems = {
   category: string[],
   brand: string[],
@@ -50,33 +40,33 @@ const separator: Separator = {
 };
 
 function upperFilter() {
-  let minPrice: number | undefined = undefined;
-  let maxPrice: number | undefined = undefined;
-  let minStock: number | undefined = undefined;
-  let maxStock: number | undefined = undefined;
-  filteredData.forEach(el => {
+  let minPrice: number | undefined;
+  let maxPrice: number | undefined;
+  let minStock: number | undefined;
+  let maxStock: number | undefined;
+  filteredData.forEach((el) => {
     if (minPrice === undefined) {
       minPrice = el.price;
     } else if (minPrice > el.price) {
-      minPrice = el.price
+      minPrice = el.price;
     }
     if (maxPrice === undefined) {
       maxPrice = el.price;
     } else if (maxPrice < el.price) {
-      maxPrice = el.price
+      maxPrice = el.price;
     }
 
     if (minStock === undefined) {
       minStock = el.stock;
     } else if (minStock > el.stock) {
-      minStock = el.stock
+      minStock = el.stock;
     }
     if (maxStock === undefined) {
       maxStock = el.stock;
     } else if (maxStock < el.stock) {
-      maxStock = el.stock
+      maxStock = el.stock;
     }
-  })
+  });
   document.querySelector('.lowest-price')!.innerHTML = minPrice!.toString();
   document.querySelector('.highest-price')!.innerHTML = maxPrice!.toString();
   document.querySelector('.lowest-stock')!.innerHTML = minStock!.toString();
