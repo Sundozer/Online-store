@@ -55,6 +55,38 @@ function getNewData() {
   });
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
+  let minPrice: number | undefined = undefined;
+  let maxPrice: number | undefined = undefined;
+  let minStock: number | undefined = undefined;
+  let maxStock: number | undefined = undefined;
+  filteredData.forEach(el => {
+    if (minPrice === undefined) {
+      minPrice = el.price;
+    } else if (minPrice > el.price) {
+      minPrice = el.price
+    }
+    if (maxPrice === undefined) {
+      maxPrice = el.price;
+    } else if (maxPrice < el.price) {
+      maxPrice = el.price
+    }
+
+    if (minStock === undefined) {
+      minStock = el.stock;
+    } else if (minStock > el.stock) {
+      minStock = el.stock
+    }
+    if (maxStock === undefined) {
+      maxStock = el.stock;
+    } else if (maxStock < el.stock) {
+      maxStock = el.stock
+    }
+  })
+  document.querySelector('.lowest-price')!.innerHTML = minPrice!.toString();
+  document.querySelector('.highest-price')!.innerHTML = maxPrice!.toString();
+  document.querySelector('.lowest-stock')!.innerHTML = minStock!.toString();
+  document.querySelector('.highest-stock')!.innerHTML = maxStock!.toString();
+
 }
 
 (function category() {
