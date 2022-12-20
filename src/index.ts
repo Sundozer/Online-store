@@ -5,6 +5,7 @@ import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
 import { createCardsProduct, deleteCardsProduct } from './main';
+import { IFilteredData } from './interfaces';
 
 
 // Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
@@ -13,17 +14,7 @@ import { createCardsProduct, deleteCardsProduct } from './main';
 // Потому что я уже настроил фильтр, он выдаёт массив 'filteredData', её надо закидывать в твою функцию
 
 const asideBlock = document.querySelector('.aside-block');
-let filteredData: { id: number,
-  title: string,
-  description: string,
-  price: number,
-  discountPercentage: number,
-  rating: number,
-  stock: number,
-  brand: string,
-  category: string,
-  thumbnail: string,
-  images: string[] }[] = [];
+let filteredData: IFilteredData[] = [];
 type FilterItems = {
   category: string[],
   brand: string[],
