@@ -39,7 +39,7 @@ const separator: Separator = {
   brand: [],
 };
 
-function upperFilter() {
+function upperFilter() { // расставляет ползунки цены и стока в зависимости от оставшихся элементов
   let minPrice: number | undefined;
   let maxPrice: number | undefined;
   let minStock: number | undefined;
@@ -77,7 +77,7 @@ function upperFilter() {
   input4.value = maxStock!.toString();
 }
 
-function getNewData() {
+function getNewData() { // Создаёт отфильтрованный список
   filteredData = [];
   data.products.forEach((el) => {
     const getting = newData(el, activeFilter, separator.category, separator.brand);
@@ -85,12 +85,20 @@ function getNewData() {
       filteredData.push(getting);
     }
   });
+  
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
   upperFilter();
+  let bra = document.querySelectorAll('.aside-block_item-brands span');
+  // bra.forEach(el => {
+  //   if (activeFilter.category.includes(el.innerHTML)) {
+  //     // console.log(el)
+  //   }
+  // })
+
 }
 
-(function category() {
+(function category() { // заполняет блоки элементами из даты
   const arr: string[] = [];
   const array: string[] = [];
   const categories = document.querySelector('.aside-block_item-types')!;
@@ -128,7 +136,7 @@ function getNewData() {
   getNewData();
 }());
 
-function placeToStorage() {
+function placeToStorage() { // добавляет фильтр в лок хранилище
   localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
   getNewData();
 }
@@ -221,7 +229,7 @@ function placeRanges() { // размещает полузнки на трека�
   getPrices();
   getStocks();
 }
-placeRanges();
+// placeRanges();
 function placeCheckBoxes() { // ставит галки на чекбоксах, когда загружается страница
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
