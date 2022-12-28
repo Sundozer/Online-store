@@ -8,10 +8,6 @@ import setRoute from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData } from './interfaces';
 
-// Сделай, пожалуйста, чтобы твоя функция вызывалась с датой внутри, вроде:
-// createCardsProduct(data.products)
-// Чтобы она не брала дату сама по себе напрямую.
-// Потому что я уже настроил фильтр, он выдаёт массив 'filteredData', её надо закидывать в твою функцию
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
@@ -198,36 +194,23 @@ asideBlock!.addEventListener('click', (event) => { // Ставит и убира
   }
 });
 
-// function getPrices() { // Создаёт цифры в блоках в зависимости от положения ползунков
-//   document.querySelector('.lowest-price')!.innerHTML = Math.min.apply(null, activeFilter.price).toString();
-//   document.querySelector('.highest-price')!.innerHTML = Math.max.apply(null, activeFilter.price).toString();
-// }
-// function getStocks() {
-//   document.querySelector('.lowest-stock')!.innerHTML = Math.min.apply(null, activeFilter.stock).toString();
-//   document.querySelector('.highest-stock')!.innerHTML = Math.max.apply(null, activeFilter.stock).toString();
-// }
-
 input1.addEventListener('input', (e) => { // считывает ползунки
   activeFilter.price[0] = Number(input1.value);
-  // getPrices();
   const ev = e.target as HTMLElement;
   placeToStorage(ev.classList[0]);
 });
 input2.addEventListener('input', (e) => {
   activeFilter.price[1] = Number(input2.value);
-  // getPrices();
   const ev = e.target as HTMLElement;
   placeToStorage(ev.classList[0]);
 });
 input3.addEventListener('input', (e) => {
   activeFilter.stock[0] = Number(input3.value);
-  // getStocks();
   const ev = e.target as HTMLElement;
   placeToStorage(ev.classList[0]);
 });
 input4.addEventListener('input', (e) => {
   activeFilter.stock[1] = Number(input4.value);
-  // getStocks();
   const ev = e.target as HTMLElement;
   placeToStorage(ev.classList[0]);
 });
@@ -237,10 +220,7 @@ function placeRanges() { // размещает полузнки на трека�
   input2.value = Math.max.apply(null, activeFilter.price).toString();
   input3.value = Math.min.apply(null, activeFilter.stock).toString();
   input4.value = Math.max.apply(null, activeFilter.stock).toString();
-  // getPrices();
-  // getStocks();
 }
-// placeRanges();
 function placeCheckBoxes() { // ставит галки на чекбоксах, когда загружается страница
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
@@ -268,7 +248,6 @@ function resetFilters() {
     price: [10, 1749],
     stock: [2, 150],
   };
-  // getPrices();
   placeRanges();
   placeToStorage();
   setRoute(activeFilter);
