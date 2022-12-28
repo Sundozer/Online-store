@@ -4,6 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
+import setRoute from './route'
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData } from './interfaces';
 
@@ -89,13 +90,7 @@ function getNewData() { // Создаёт отфильтрованный спи�
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
   upperFilter();
-  let bra = document.querySelectorAll('.aside-block_item-brands span');
-  // bra.forEach(el => {
-  //   if (activeFilter.category.includes(el.innerHTML)) {
-  //     // console.log(el)
-  //   }
-  // })
-
+  setRoute(activeFilter)
 }
 
 (function category() { // заполняет блоки элементами из даты
