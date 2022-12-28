@@ -89,6 +89,9 @@ input[type=range]::-ms-thumb {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  .main-navigation_online-store {
+    cursor: pointer;
+  }
 }
 
 

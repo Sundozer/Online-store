@@ -4,7 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
-import setRoute from './route'
+import setRoute from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData } from './interfaces';
 
@@ -68,14 +68,16 @@ function upperFilter() { // расставляет ползунки цены и 
       maxStock = el.stock;
     }
   });
-  document.querySelector('.lowest-price')!.innerHTML = minPrice!.toString();
-  document.querySelector('.highest-price')!.innerHTML = maxPrice!.toString();
-  document.querySelector('.lowest-stock')!.innerHTML = minStock!.toString();
-  document.querySelector('.highest-stock')!.innerHTML = maxStock!.toString();
-  input1.value = minPrice!.toString();
-  input2.value = maxPrice!.toString();
-  input3.value = minStock!.toString();
-  input4.value = maxStock!.toString();
+  if (minPrice !== undefined) {
+    document.querySelector('.lowest-price')!.innerHTML = minPrice!.toString();
+    document.querySelector('.highest-price')!.innerHTML = maxPrice!.toString();
+    document.querySelector('.lowest-stock')!.innerHTML = minStock!.toString();
+    document.querySelector('.highest-stock')!.innerHTML = maxStock!.toString();
+    input1.value = minPrice!.toString();
+    input2.value = maxPrice!.toString();
+    input3.value = minStock!.toString();
+    input4.value = maxStock!.toString();
+  }
 }
 
 function getNewData() { // Создаёт отфильтрованный список
@@ -86,11 +88,11 @@ function getNewData() { // Создаёт отфильтрованный спи�
       filteredData.push(getting);
     }
   });
-  
+
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
   upperFilter();
-  setRoute(activeFilter)
+  setRoute(activeFilter);
 }
 
 (function category() { // заполняет блоки элементами из даты
@@ -236,7 +238,8 @@ function placeCheckBoxes() { // ставит галки на чекбоксах,
   });
 }
 placeCheckBoxes();
-document.querySelector('.reset-filters')!.addEventListener('click', () => { // кнопка сброса фильтров, снимает все чеки, возвращает ползунки на место, очищает активный фильтр
+
+function resetFilters() {
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
@@ -254,4 +257,7 @@ document.querySelector('.reset-filters')!.addEventListener('click', () => { // �
   getPrices();
   placeRanges();
   placeToStorage();
-});
+  setRoute(activeFilter);
+}
+document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
+document.querySelector('.main-navigation_online-store')!.addEventListener('click', resetFilters);
