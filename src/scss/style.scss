@@ -85,7 +85,14 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
 }
 
-
+.header-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .main-navigation_online-store {
+    cursor: pointer;
+  }
+}
 
 
 

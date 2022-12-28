@@ -22,22 +22,22 @@ function addDescriptionCard(key: number, framesСard: HTMLElement, objectCardsFi
   descriptionCard.classList.add('description-card');
   const descriptionCard1 = document.createElement('div');
   descriptionCard.append(descriptionCard1);
-  descriptionCard1.textContent = "Category: " + objectCardsFilter[key].category;
+  descriptionCard1.textContent = `Category: ${objectCardsFilter[key].category}`;
   const descriptionCard2 = document.createElement('div');
   descriptionCard.append(descriptionCard2);
-  descriptionCard2.textContent = "Brand: " + objectCardsFilter[key].brand;
+  descriptionCard2.textContent = `Brand: ${objectCardsFilter[key].brand}`;
   const descriptionCard3 = document.createElement('div');
   descriptionCard.append(descriptionCard3);
-  descriptionCard3.textContent = "Price: " + objectCardsFilter[key].price;
+  descriptionCard3.textContent = `Price: ${objectCardsFilter[key].price}`;
   const descriptionCard4 = document.createElement('div');
   descriptionCard.append(descriptionCard4);
-  descriptionCard4.textContent = "Discount: " + objectCardsFilter[key].discountPercentage;
+  descriptionCard4.textContent = `Discount: ${objectCardsFilter[key].discountPercentage}`;
   const descriptionCard5 = document.createElement('div');
   descriptionCard.append(descriptionCard5);
-  descriptionCard5.textContent = "Rating: " + objectCardsFilter[key].rating;
+  descriptionCard5.textContent = `Rating: ${objectCardsFilter[key].rating}`;
   const descriptionCard6 = document.createElement('div');
   descriptionCard.append(descriptionCard6);
-  descriptionCard6.textContent = "Stock: " + objectCardsFilter[key].stock;
+  descriptionCard6.textContent = `Stock: ${objectCardsFilter[key].stock}`;
 }
 
 function createCardProduct(key: number, pmainContainerCards:Element, objectCardsFilter: IFilteredData[]) {
