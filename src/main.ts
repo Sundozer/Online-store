@@ -69,14 +69,14 @@ export function deleteCardsProduct() {
 }
 
 function addBlockCard(framesСard: HTMLElement) {
-  const block = document.createElement("div");
+  const block = document.createElement('div');
   framesСard.append(block);
   block.classList.add('block');
   return block;
 }
 
 function addButtonCard(framesСard: HTMLElement, textButton: string) {
-  const btn = document.createElement("button");
+  const btn = document.createElement('button');
   framesСard.append(btn);
   btn.classList.add('buttons');
   btn.classList.add('buttons-card');

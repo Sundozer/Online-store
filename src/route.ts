@@ -3,7 +3,7 @@ type Obj = {
   brand: string[],
   price: number[],
   stock: number[],
-}
+};
 
 export function setRoute(obj: Obj):void {
   let route = '';
@@ -56,39 +56,37 @@ export function setRoute(obj: Obj):void {
   }
 }
 
-export function getRoute (str: string) {
-  let newStr = str.slice(1, str.length);
-  let newArr = newStr.split('&');
-  let newObj: Obj = {
+export function getRoute(str: string) {
+  const obrStr = str.replace(/%20/g, ' ');
+  const newStr = obrStr.slice(1, obrStr.length);
+  const newArr = newStr.split('&');
+  const newObj: Obj = {
     category: [],
     brand: [],
     price: [10, 1749],
     stock: [2, 150],
-  }
-  newArr.forEach(el => {
-    let insideArr = el.split(':')
+  };
+  newArr.forEach((el) => {
+    const insideArr = el.split(':');
     if (insideArr[0] === 'category') {
-      let insideCategory = insideArr[1].split('|')
-      insideCategory.forEach(el => newObj.category.push(el))
-     
+      const insideCategory = insideArr[1].split('|');
+      insideCategory.forEach((elem) => newObj.category.push(elem));
     }
     if (insideArr[0] === 'brand') {
-      let insideBrand = insideArr[1].split('|')
-      insideBrand.forEach(el => newObj.brand.push(el))
+      const insideBrand = insideArr[1].split('|');
+      insideBrand.forEach((elem) => newObj.brand.push(elem));
     }
     if (insideArr[0] === 'price') {
-      let insideBrand = insideArr[1].split('|')
+      const insideBrand = insideArr[1].split('|');
       newObj.price[0] = Number(insideBrand[0]);
       newObj.price[1] = Number(insideBrand[1]);
     }
     if (insideArr[0] === 'stock') {
-      let insideBrand = insideArr[1].split('|')
+      const insideBrand = insideArr[1].split('|');
       newObj.stock[0] = Number(insideBrand[0]);
       newObj.stock[1] = Number(insideBrand[1]);
     }
-  })
-
-
+  });
 
   return newObj;
 }

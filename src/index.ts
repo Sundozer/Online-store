@@ -96,7 +96,6 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
     }
   });
 
-  
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);
   upperFilter(e);
@@ -129,21 +128,19 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
     }
   }
   if (window.location.search.length > 1) {
-    let getFilter = getRoute(window.location.search);
+    const getFilter = getRoute(window.location.search);
     activeFilter = getFilter;
+  } else if (localStorage.getItem('activeFilter') === null) {
+    activeFilter = {
+      category: [],
+      brand: [],
+      price: [10, 1749],
+      stock: [2, 150],
+    };
   } else {
-    if (localStorage.getItem('activeFilter') === null) {
-      activeFilter = {
-        category: [],
-        brand: [],
-        price: [10, 1749],
-        stock: [2, 150],
-      };
-    } else {
-      activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
-    }
+    activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
   }
-  
+
   getNewData();
 }());
 
@@ -264,10 +261,10 @@ document.querySelector('.reset-filters')!.addEventListener('click', resetFilters
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', resetFilters);
 
 const optionElements = document.querySelector('.select');
-  optionElements!.addEventListener('change', (event) => {
+optionElements!.addEventListener('change', (event) => {
   const target = event.target as HTMLSelectElement;
   // getNewData();
   sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
   deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
   createCardsProduct(filteredData);
-})
+});

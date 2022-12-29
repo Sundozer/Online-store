@@ -3,7 +3,7 @@ import { IFilteredData } from './interfaces';
 
 export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
   // debugger;
-  switch(value) {
+  switch (value) {
     case 'price ASC':
       sortDatePriceASC(objectCardsFilter);
       break;
@@ -12,23 +12,16 @@ export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
       break;
     default:
       break;
-    }
   }
+}
 
+function sortDatePriceASC(objectCardsFilter: IFilteredData[]) {
+  objectCardsFilter.sort((a, b) => a.price - b.price);
+}
 
-  function sortDatePriceASC(objectCardsFilter: IFilteredData[]) {
-    objectCardsFilter.sort((a, b) => {
-      return a.price - b.price;
-    });
-  }
-
-  function sortDatePriceDESC(objectCardsFilter: IFilteredData[]) {
-    objectCardsFilter.sort((a, b) => {
-      return b.price - a.price;
-    });
-  }
-  
-
+function sortDatePriceDESC(objectCardsFilter: IFilteredData[]) {
+  objectCardsFilter.sort((a, b) => b.price - a.price);
+}
 
 // const optionElements = document.querySelectorAll('.options');
 // optionElements[0]!.addEventListener('click', (event) => {
@@ -48,4 +41,3 @@ export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
 
 //   return 0;
 // });
-
