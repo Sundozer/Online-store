@@ -25,7 +25,11 @@
 //   width: 100px;
 //   height: 100px;
 // }
-.wrap-buttons,
+.wrap-buttons {
+  display: flex;
+  margin-right: 10px;
+}
+
 .wrap-span {
   display: flex;
 }

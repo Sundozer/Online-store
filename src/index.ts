@@ -96,7 +96,9 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   });
 
   deleteCardsProduct();// удаление карточек перед формированием нового набора
-  createCardsProduct(filteredData);// вызов функции добавил сюда, верно ли, исходя из логики?
+  createCardsProduct(filteredData);
+  
+  console.log(filteredData);
   upperFilter(e);
   setRoute(activeFilter);
 }
