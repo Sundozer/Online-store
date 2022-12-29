@@ -54,7 +54,7 @@ function createCardProduct(key: number, pmainContainerCards:Element, objectCards
 }
 
 export function createCardsProduct(objectCardsFilter: IFilteredData[]) {
-  sortDate(objectCardsFilter);
+  // sortDatePriceASC(objectCardsFilter);
   if (mainContainerCards !== null) {
     Object.keys(objectCardsFilter).forEach((key) => {
       createCardProduct(+key, mainContainerCards, objectCardsFilter);
