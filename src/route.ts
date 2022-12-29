@@ -1,4 +1,4 @@
-export default function setRoute(obj: { category: string[], brand: string[], price: number[], stock: number[] }):void {
+export function setRoute(obj: { category: string[], brand: string[], price: number[], stock: number[] }):void {
   let route = '';
   let part1 = '';
   let part2 = '';
@@ -47,4 +47,16 @@ export default function setRoute(obj: { category: string[], brand: string[], pri
     /* eslint-disable-next-line */
     window.history.replaceState({}, '', location.pathname);
   }
+}
+
+export function getRoute (str: string) {
+  let newStr = str.slice(1, str.length)
+  console.log(newStr)
+
+
+
+
+
+
+  return 1;
 }

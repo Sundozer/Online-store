@@ -4,7 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
-import setRoute from './route';
+import { setRoute, getRoute } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData } from './interfaces';
 
@@ -97,8 +97,6 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
 
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);
-  
-  console.log(filteredData);
   upperFilter(e);
   setRoute(activeFilter);
 }
@@ -128,16 +126,21 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
       separator.brand.push(i.brand);
     }
   }
-  if (localStorage.getItem('activeFilter') === null) {
-    activeFilter = {
-      category: [],
-      brand: [],
-      price: [10, 1749],
-      stock: [2, 150],
-    };
+  if (window.location.search.length > 1) {
+    let getFilter = getRoute(window.location.search);
   } else {
-    activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
+    if (localStorage.getItem('activeFilter') === null) {
+      activeFilter = {
+        category: [],
+        brand: [],
+        price: [10, 1749],
+        stock: [2, 150],
+      };
+    } else {
+      activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
+    }
   }
+  
   getNewData();
 }());
 
