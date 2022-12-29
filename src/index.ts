@@ -7,6 +7,7 @@ import newData from './newData';
 import { setRoute, getRoute } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData } from './interfaces';
+import { sortDate } from './sort';
 
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
@@ -95,6 +96,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
     }
   });
 
+  
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);
   upperFilter(e);
@@ -259,3 +261,12 @@ function resetFilters() {
 }
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', resetFilters);
+
+const optionElements = document.querySelector('.select');
+  optionElements!.addEventListener('change', (event) => {
+  const target = event.target as HTMLSelectElement;
+  // getNewData();
+  sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
+  deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
+  createCardsProduct(filteredData);
+})
