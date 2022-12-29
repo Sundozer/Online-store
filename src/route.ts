@@ -81,9 +81,11 @@ export function getRoute (str: string) {
       newObj.price[0] = Number(insideBrand[0]);
       newObj.price[1] = Number(insideBrand[1]);
     }
-    console.log(str)
-
-
+    if (insideArr[0] === 'stock') {
+      let insideBrand = insideArr[1].split('|')
+      newObj.stock[0] = Number(insideBrand[0]);
+      newObj.stock[1] = Number(insideBrand[1]);
+    }
   })
 
 
