@@ -1,5 +1,6 @@
 import data from './data';
 import { IFilteredData } from './interfaces';
+import { sortDate } from './sort';
 
 const mainContainerCards = document.querySelector('.main-container-cards');
 
@@ -53,6 +54,7 @@ function createCardProduct(key: number, pmainContainerCards:Element, objectCards
 }
 
 export function createCardsProduct(objectCardsFilter: IFilteredData[]) {
+  sortDate(objectCardsFilter);
   if (mainContainerCards !== null) {
     Object.keys(objectCardsFilter).forEach((key) => {
       createCardProduct(+key, mainContainerCards, objectCardsFilter);
