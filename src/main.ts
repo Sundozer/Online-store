@@ -47,6 +47,9 @@ function createCardProduct(key: number, pmainContainerCards:Element, objectCards
   addBackgroundImg(key, framesСard, objectCardsFilter);
   addHeaderCard(key, framesСard, objectCardsFilter);
   addDescriptionCard(key, framesСard, objectCardsFilter);
+  const block = addBlockCard(framesСard);
+  addButtonCard(block, 'ADD TO CART');
+  addButtonCard(block, 'DETAILS');
 }
 
 export function createCardsProduct(objectCardsFilter: IFilteredData[]) {
@@ -61,4 +64,19 @@ export function deleteCardsProduct() {
   if (mainContainerCards !== null) {
     mainContainerCards.replaceChildren();
   }
+}
+
+function addBlockCard(framesСard: HTMLElement) {
+  const block = document.createElement("div");
+  framesСard.append(block);
+  block.classList.add('block');
+  return block;
+}
+
+function addButtonCard(framesСard: HTMLElement, textButton: string) {
+  const btn = document.createElement("button");
+  framesСard.append(btn);
+  btn.classList.add('buttons');
+  btn.classList.add('buttons-card');
+  btn.textContent = `${textButton}`;
 }
