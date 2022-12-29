@@ -130,6 +130,8 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   }
   if (window.location.search.length > 1) {
     let getFilter = getRoute(window.location.search);
+    activeFilter = getFilter;
+    console.log(activeFilter)
   } else {
     if (localStorage.getItem('activeFilter') === null) {
       activeFilter = {

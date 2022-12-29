@@ -1,4 +1,11 @@
-export function setRoute(obj: { category: string[], brand: string[], price: number[], stock: number[] }):void {
+type Obj = {
+  category: string[],
+  brand: string[],
+  price: number[],
+  stock: number[],
+}
+
+export function setRoute(obj: Obj):void {
   let route = '';
   let part1 = '';
   let part2 = '';
@@ -9,7 +16,7 @@ export function setRoute(obj: { category: string[], brand: string[], price: numb
     part1 += 'category:';
     const newArr:string[] = [];
     obj.category.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part1 += newStr;
     result.push(part1);
   }
@@ -17,7 +24,7 @@ export function setRoute(obj: { category: string[], brand: string[], price: numb
     part2 += 'brand:';
     const newArr:string[] = [];
     obj.brand.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part2 += newStr;
     result.push(part2);
   }
@@ -25,7 +32,7 @@ export function setRoute(obj: { category: string[], brand: string[], price: numb
     part3 += 'price:';
     const newArr:number[] = [];
     obj.price.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part3 += newStr;
     result.push(part3);
   }
@@ -33,7 +40,7 @@ export function setRoute(obj: { category: string[], brand: string[], price: numb
     part4 += 'stock:';
     const newArr:number[] = [];
     obj.stock.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part4 += newStr;
     result.push(part4);
   }
@@ -50,13 +57,36 @@ export function setRoute(obj: { category: string[], brand: string[], price: numb
 }
 
 export function getRoute (str: string) {
-  let newStr = str.slice(1, str.length)
-  console.log(newStr)
+  let newStr = str.slice(1, str.length);
+  let newArr = newStr.split('&');
+  let newObj: Obj = {
+    category: [],
+    brand: [],
+    price: [10, 1749],
+    stock: [2, 150],
+  }
+  newArr.forEach(el => {
+    let insideArr = el.split(':')
+    if (insideArr[0] === 'category') {
+      let insideCategory = insideArr[1].split('|')
+      insideCategory.forEach(el => newObj.category.push(el))
+     
+    }
+    if (insideArr[0] === 'brand') {
+      let insideBrand = insideArr[1].split('|')
+      insideBrand.forEach(el => newObj.brand.push(el))
+    }
+    if (insideArr[0] === 'price') {
+      let insideBrand = insideArr[1].split('|')
+      newObj.price[0] = Number(insideBrand[0]);
+      newObj.price[1] = Number(insideBrand[1]);
+    }
+    console.log(str)
+
+
+  })
 
 
 
-
-
-
-  return 1;
+  return newObj;
 }
