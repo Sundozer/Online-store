@@ -11,3 +11,13 @@ export interface IFilteredData {
   thumbnail: string;
   images: string[];
 }
+export type Separator = {
+  category: string[],
+  brand: string[]
+};
+export type FilterItems = {
+  category: string[],
+  brand: string[],
+  price: number[],
+  stock: number[],
+};
