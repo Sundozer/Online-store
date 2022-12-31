@@ -2,6 +2,7 @@ import data from './data';
 import { IFilteredData } from './interfaces';
 
 export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
+
   switch(value) {
     case 'price ASC':
       sortDateASC(objectCardsFilter, 'price');
@@ -23,8 +24,8 @@ export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
       break;   
     default:
       break;
-    }
   }
+
   function sortDateASC(objectCardsFilter: IFilteredData[], sortProp: string) {
     objectCardsFilter.sort((a, b) => {
       return +a[sortProp as keyof IFilteredData] - +b[sortProp as keyof IFilteredData];
@@ -35,3 +36,4 @@ export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
       return +b[sortProp as keyof IFilteredData] - +a[sortProp as keyof IFilteredData];
     });
   }
+}

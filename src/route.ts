@@ -1,4 +1,11 @@
-export default function setRoute(obj: { category: string[], brand: string[], price: number[], stock: number[] }):void {
+type Obj = {
+  category: string[],
+  brand: string[],
+  price: number[],
+  stock: number[],
+};
+
+export function setRoute(obj: Obj):void {
   let route = '';
   let part1 = '';
   let part2 = '';
@@ -9,7 +16,7 @@ export default function setRoute(obj: { category: string[], brand: string[], pri
     part1 += 'category:';
     const newArr:string[] = [];
     obj.category.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part1 += newStr;
     result.push(part1);
   }
@@ -17,7 +24,7 @@ export default function setRoute(obj: { category: string[], brand: string[], pri
     part2 += 'brand:';
     const newArr:string[] = [];
     obj.brand.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part2 += newStr;
     result.push(part2);
   }
@@ -25,7 +32,7 @@ export default function setRoute(obj: { category: string[], brand: string[], pri
     part3 += 'price:';
     const newArr:number[] = [];
     obj.price.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part3 += newStr;
     result.push(part3);
   }
@@ -33,7 +40,7 @@ export default function setRoute(obj: { category: string[], brand: string[], pri
     part4 += 'stock:';
     const newArr:number[] = [];
     obj.stock.forEach((el) => newArr.push(el));
-    const newStr = newArr.join('↕');
+    const newStr = newArr.join('|');
     part4 += newStr;
     result.push(part4);
   }
@@ -47,4 +54,39 @@ export default function setRoute(obj: { category: string[], brand: string[], pri
     /* eslint-disable-next-line */
     window.history.replaceState({}, '', location.pathname);
   }
+}
+
+export function getRoute(str: string) {
+  const obrStr = str.replace(/%20/g, ' ');
+  const newStr = obrStr.slice(1, obrStr.length);
+  const newArr = newStr.split('&');
+  const newObj: Obj = {
+    category: [],
+    brand: [],
+    price: [10, 1749],
+    stock: [2, 150],
+  };
+  newArr.forEach((el) => {
+    const insideArr = el.split(':');
+    if (insideArr[0] === 'category') {
+      const insideCategory = insideArr[1].split('|');
+      insideCategory.forEach((elem) => newObj.category.push(elem));
+    }
+    if (insideArr[0] === 'brand') {
+      const insideBrand = insideArr[1].split('|');
+      insideBrand.forEach((elem) => newObj.brand.push(elem));
+    }
+    if (insideArr[0] === 'price') {
+      const insideBrand = insideArr[1].split('|');
+      newObj.price[0] = Number(insideBrand[0]);
+      newObj.price[1] = Number(insideBrand[1]);
+    }
+    if (insideArr[0] === 'stock') {
+      const insideBrand = insideArr[1].split('|');
+      newObj.stock[0] = Number(insideBrand[0]);
+      newObj.stock[1] = Number(insideBrand[1]);
+    }
+  });
+
+  return newObj;
 }
