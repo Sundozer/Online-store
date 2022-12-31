@@ -99,7 +99,23 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(filteredData);
   upperFilter(e);
-  setRoute(activeFilter);
+}
+
+function checkURL () { // чекает юрл, чтобы заполнить активный фильтр
+  if (window.location.search.length > 1) {
+    const getFilter = getRoute(window.location.search);
+    activeFilter = getFilter;
+  } else if (localStorage.getItem('activeFilter') === null) {
+    activeFilter = {
+      category: [],
+      brand: [],
+      price: [10, 1749],
+      stock: [2, 150],
+    };
+  } else {
+    activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
+  }
+  getNewData();
 }
 
 (function category() { // заполняет блоки элементами из даты
@@ -127,21 +143,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
       separator.brand.push(i.brand);
     }
   }
-  if (window.location.search.length > 1) {
-    const getFilter = getRoute(window.location.search);
-    activeFilter = getFilter;
-  } else if (localStorage.getItem('activeFilter') === null) {
-    activeFilter = {
-      category: [],
-      brand: [],
-      price: [10, 1749],
-      stock: [2, 150],
-    };
-  } else {
-    activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
-  }
-
-  getNewData();
+  checkURL()
 }());
 
 function placeToStorage(ev?: string) { // добавляет фильтр в лок хранилище
@@ -197,6 +199,7 @@ asideBlock!.addEventListener('click', (event) => { // Ставит и убира
       }
     }
   }
+  setRoute(activeFilter);
 });
 
 input1.addEventListener('input', (e) => { // считывает ползунки
@@ -220,13 +223,12 @@ input4.addEventListener('input', (e) => {
   placeToStorage(ev.classList[0]);
 });
 
-function placeRanges() { // размещает полузнки на треках, когда загружается страница
-  input1.value = Math.min.apply(null, activeFilter.price).toString();
-  input2.value = Math.max.apply(null, activeFilter.price).toString();
-  input3.value = Math.min.apply(null, activeFilter.stock).toString();
-  input4.value = Math.max.apply(null, activeFilter.stock).toString();
-}
 function placeCheckBoxes() { // ставит галки на чекбоксах, когда загружается страница
+  let boxes = document.querySelectorAll('input[type=checkbox]')
+  boxes.forEach(el => {
+    let box = el as HTMLInputElement;
+    box.checked = false
+  })
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = true;
@@ -253,7 +255,6 @@ function resetFilters() {
     price: [10, 1749],
     stock: [2, 150],
   };
-  placeRanges();
   placeToStorage();
   setRoute(activeFilter);
 }
@@ -268,3 +269,18 @@ optionElements!.addEventListener('change', (event) => {
   deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
   createCardsProduct(filteredData);
 });
+window.addEventListener('popstate', function () {
+  if (window.location.search.length < 2) {
+    activeFilter = {
+      category: [],
+      brand: [],
+      price: [10, 1749],
+      stock: [2, 150],
+    };
+    getNewData()
+  } else {
+    checkURL()
+  }
+  placeCheckBoxes()
+})
+ 

@@ -2,42 +2,38 @@ import data from './data';
 import { IFilteredData } from './interfaces';
 
 export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
-  // debugger;
-  switch (value) {
+
+  switch(value) {
     case 'price ASC':
-      sortDatePriceASC(objectCardsFilter);
+      sortDateASC(objectCardsFilter, 'price');
       break;
     case 'price DESC':
-      sortDatePriceDESC(objectCardsFilter);
+      sortDateDESC(objectCardsFilter, 'price');
       break;
+    case 'discount ASC':
+      sortDateASC(objectCardsFilter, 'discountPercentage');
+      break;
+    case 'discount DESC':
+      sortDateDESC(objectCardsFilter, 'discountPercentage');
+      break;
+    case 'rating ASC':
+      sortDateASC(objectCardsFilter, 'rating');
+      break;
+    case 'rating DESC':
+      sortDateDESC(objectCardsFilter, 'rating');
+      break;   
     default:
       break;
   }
+
+  function sortDateASC(objectCardsFilter: IFilteredData[], sortProp: string) {
+    objectCardsFilter.sort((a, b) => {
+      return +a[sortProp as keyof IFilteredData] - +b[sortProp as keyof IFilteredData];
+    });
+  }
+  function sortDateDESC(objectCardsFilter: IFilteredData[], sortProp: string) {
+    objectCardsFilter.sort((a, b) => {
+      return +b[sortProp as keyof IFilteredData] - +a[sortProp as keyof IFilteredData];
+    });
+  }
 }
-
-function sortDatePriceASC(objectCardsFilter: IFilteredData[]) {
-  objectCardsFilter.sort((a, b) => a.price - b.price);
-}
-
-function sortDatePriceDESC(objectCardsFilter: IFilteredData[]) {
-  objectCardsFilter.sort((a, b) => b.price - a.price);
-}
-
-// const optionElements = document.querySelectorAll('.options');
-// optionElements[0]!.addEventListener('click', (event) => {
-//   const e = event.target as HTMLElement;
-//   // if (e === option)
-//   debugger;
-// })
-
-// var sortedArray: { age: number; }[] = objectArray.sort((n1, n2) => {
-//   if (n1.age > n2.age) {
-//       return 1;
-//   }
-
-//   if (n1.age < n2.age) {
-//       return -1;
-//   }
-
-//   return 0;
-// });
