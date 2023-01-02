@@ -93,7 +93,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
 
 function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
   if (window.location.search.length > 1) {
-    const getFilter = getRoute(window.location.search);
+    const getFilter = getRoute(window.location.search, separator);
     activeFilter = getFilter;
   } else if (localStorage.getItem('activeFilter') === null) {
     activeFilter = {
