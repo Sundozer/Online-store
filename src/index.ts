@@ -9,6 +9,7 @@ import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
 
+const shoppingList: string[] = []
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
@@ -273,3 +274,24 @@ window.addEventListener('popstate', () => {
   }
   placeCheckBoxes();
 });
+
+
+
+
+
+
+
+window.addEventListener('click', (e) => {
+  let summaryPrice = 0;
+  const event = e.target as HTMLElement;
+  if (event.innerHTML === 'ADD TO CART') {
+    shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
+    localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+    shoppingList.forEach(el => {
+      const founded = data.products.find(element => element.title === el)
+      summaryPrice += founded!.price;
+    })
+  }
+  document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+
+})
