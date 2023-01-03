@@ -4,7 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
-import { setRoute, getRoute } from './route';
+import { setRoute, getRoute, checkPage } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
@@ -31,7 +31,7 @@ const separator: Separator = {
 if (localStorage.getItem('shoppingList') !== null) {
   let get: string  = localStorage.getItem('shoppingList')!
   shoppingList = JSON.parse(get)
-  
+  document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
 } else {
   shoppingList = [];
 }
@@ -296,6 +296,7 @@ window.addEventListener('popstate', () => {
     checkURL();
   }
   placeCheckBoxes();
+  checkPage();
 });
 
 document.querySelector('.basket')!.addEventListener('click', () => {
@@ -303,13 +304,8 @@ document.querySelector('.basket')!.addEventListener('click', () => {
   let cart = document.querySelector('.cart') as HTMLElement;
   central.style.display = 'none';
   cart.style.display = 'block';
+  window.history.pushState({}, '', 'cart');
 })
-
-
-
-function summary() {
-  
-}
 
 window.addEventListener('click', (e) => {
   let summaryPrice:number = 0;
@@ -321,9 +317,9 @@ window.addEventListener('click', (e) => {
       const founded = data.products.find(element => element.title === el)
       summaryPrice += founded!.price;
       localStorage.setItem('summaryPrice', summaryPrice.toString())
+      document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+      document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
     })
   }
-  document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
-  document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
-
+  
 })

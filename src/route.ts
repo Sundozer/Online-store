@@ -98,3 +98,8 @@ export function getRoute(str: string, separator: { category: string[], brand: st
 
   return newObj;
 }
+
+export function checkPage () {
+  console.log(window.location.pathname)
+
+}
