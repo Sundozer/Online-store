@@ -93,6 +93,8 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
       filteredData.push(getting);
     }
   });
+  const found = document.querySelector('.span-main-header') as HTMLElement;
+  found.innerHTML = `Found: ${filteredData.length}`
   const selected = document.querySelector('.select') as HTMLSelectElement;
   sortDate(selected.value, filteredData);
   deleteCardsProduct();// удаление карточек перед формированием нового набора
