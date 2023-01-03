@@ -146,7 +146,38 @@ input[type=range]::-ms-thumb {
   min-height: 100vh;
   display: none;
   cursor: pointer;
+  .items-block {
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    .products-in-cart {
+      width: 60%;
+      background-color: $aside-block-back;
+      .products-in {
+        text-align: center;
+        background-color: $header-footer;
+        width: 90%;
+      }
+    }
+    .summary-items {
+      width: 38%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $aside-block-back;
+      .summary-block {
+        text-align: center;
+        background-color: $header-footer;
+        width: 100%;
+      }
+      .promocode {
+        text-align: center;
+      }
+    }
+  }
 }
+
 .basket {
   cursor: pointer;
 }

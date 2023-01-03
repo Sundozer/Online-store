@@ -8,6 +8,7 @@ import { setRoute, getRoute, checkPage, showMain } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
+import { placeToCart, clearProducts } from './cart';
 
 
 let shoppingList: string[];
@@ -32,11 +33,13 @@ if (localStorage.getItem('shoppingList') !== null) {
   let get: string  = localStorage.getItem('shoppingList')!
   shoppingList = JSON.parse(get)
   document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
+  document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`
 } else {
   shoppingList = [];
 }
 if (localStorage.getItem('summaryPrice') !== null) {
   document.querySelector('.total-price')!.innerHTML = `Cart total: ${Number(localStorage.getItem('summaryPrice'))}`
+  document.querySelector('.total-in-block')!.innerHTML = `Total: ${Number(localStorage.getItem('summaryPrice'))}`
 }
 
 
@@ -306,6 +309,7 @@ document.querySelector('.basket')!.addEventListener('click', () => {
 window.addEventListener('click', (e) => {
   let summaryPrice:number = 0;
   const event = e.target as HTMLElement;
+  clearProducts()
   if (event.innerHTML === 'ADD TO CART') {
     shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
@@ -314,7 +318,10 @@ window.addEventListener('click', (e) => {
       summaryPrice += founded!.price;
       localStorage.setItem('summaryPrice', summaryPrice.toString())
       document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+      document.querySelector('.total-in-block')!.innerHTML = `Total: ${summaryPrice}`
       document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
+      document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`
+      placeToCart(founded!)
     })
   }
   

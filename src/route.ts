@@ -108,7 +108,6 @@ export function showMain () {
 }
 
 export function checkPage () {
-  console.log(window.location.pathname)
   if (window.location.pathname === '/') {
     showMain()
   }
