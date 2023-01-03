@@ -127,7 +127,7 @@ function checkURL () { // чекает юрл, чтобы заполнить а�
   const div = document.createElement('div');
   div.classList.add('aside-block_item-category');
   const divv = document.createElement('div');
-  divv.classList.add('aside-block_item-brands');
+  div.classList.add('aside-block_item-brands');
   /* eslint-disable-next-line */
   for (const i of data.products) {
     if (!arr.includes(i.category)) { // Тут заполняются названиями первые два блока
@@ -269,6 +269,7 @@ optionElements!.addEventListener('change', (event) => {
   deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
   createCardsProduct(filteredData);
 });
+
 window.addEventListener('popstate', function () {
   if (window.location.search.length < 2) {
     activeFilter = {
