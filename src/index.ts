@@ -4,7 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
-import { setRoute, getRoute, checkPage } from './route';
+import { setRoute, getRoute, checkPage, showMain } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
@@ -265,12 +265,7 @@ function resetFilters() {
   setRoute(activeFilter);
 }
 
-function showMain () {
-  let central = document.querySelector('.central') as HTMLElement;
-  let cart = document.querySelector('.cart') as HTMLElement;
-  central.style.display = 'block';
-  cart.style.display = 'none';
-}
+
 
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
@@ -305,6 +300,7 @@ document.querySelector('.basket')!.addEventListener('click', () => {
   central.style.display = 'none';
   cart.style.display = 'block';
   window.history.pushState({}, '', 'cart');
+  checkPage();
 })
 
 window.addEventListener('click', (e) => {
