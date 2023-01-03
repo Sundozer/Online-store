@@ -94,7 +94,10 @@ input[type=range]::-ms-thumb {
   }
 }
 
-
+.header-container {
+  width: 90%;
+  margin: auto;
+}
 
 
 
@@ -138,7 +141,15 @@ input[type=range]::-ms-thumb {
   }
   
 }
-
+.cart {
+  min-width: 100%;
+  min-height: 100vh;
+  display: none;
+  cursor: pointer;
+}
+.basket {
+  cursor: pointer;
+}
 
 .footer {
   width: 100%;
