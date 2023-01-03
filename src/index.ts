@@ -8,7 +8,7 @@ import { setRoute, getRoute, checkPage, showMain } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
-import { placeToCart, clearProducts } from './cart';
+import { placeToCart, clearProducts, clearButtonCart } from './cart';
 
 
 let shoppingList: string[];
@@ -17,7 +17,8 @@ const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
-
+const clearCartButton = document.querySelector('.clear-cart-button')
+let summaryPrice:number = 0;
 let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
   category: [],
@@ -307,9 +308,7 @@ document.querySelector('.basket')!.addEventListener('click', () => {
 })
 
 window.addEventListener('click', (e) => {
-  let summaryPrice:number = 0;
   const event = e.target as HTMLElement;
-  clearProducts()
   if (event.innerHTML === 'ADD TO CART') {
     shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
@@ -324,5 +323,10 @@ window.addEventListener('click', (e) => {
       placeToCart(founded!)
     })
   }
-  
+})
+
+clearCartButton?.addEventListener('click', () => {
+  clearButtonCart()
+  shoppingList = [];
+  summaryPrice = 0;
 })
