@@ -28,13 +28,14 @@ const separator: Separator = {
   category: [],
   brand: [],
 };
-if (localStorage.getItem('shoppingList') !== undefined) {
+if (localStorage.getItem('shoppingList') !== null) {
   let get: string  = localStorage.getItem('shoppingList')!
   shoppingList = JSON.parse(get)
+  
 } else {
   shoppingList = [];
 }
-if (localStorage.getItem('summaryPrice') !== undefined) {
+if (localStorage.getItem('summaryPrice') !== null) {
   document.querySelector('.total-price')!.innerHTML = `Cart total: ${Number(localStorage.getItem('summaryPrice'))}`
 }
 
@@ -323,5 +324,6 @@ window.addEventListener('click', (e) => {
     })
   }
   document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+  document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
 
 })
