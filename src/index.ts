@@ -310,6 +310,7 @@ document.querySelector('.basket')!.addEventListener('click', () => {
 window.addEventListener('click', (e) => {
   const event = e.target as HTMLElement;
   if (event.innerHTML === 'ADD TO CART') {
+    clearProducts()
     shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
     shoppingList.forEach(el => {
