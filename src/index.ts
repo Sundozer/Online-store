@@ -16,6 +16,7 @@ const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
+
 let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
   category: [],
@@ -32,6 +33,9 @@ if (localStorage.getItem('shoppingList') !== undefined) {
   shoppingList = JSON.parse(get)
 } else {
   shoppingList = [];
+}
+if (localStorage.getItem('summaryPrice') !== undefined) {
+  document.querySelector('.total-price')!.innerHTML = `Cart total: ${Number(localStorage.getItem('summaryPrice'))}`
 }
 
 
@@ -302,7 +306,9 @@ document.querySelector('.basket')!.addEventListener('click', () => {
 
 
 
-
+function summary() {
+  
+}
 
 window.addEventListener('click', (e) => {
   let summaryPrice:number = 0;
@@ -313,6 +319,7 @@ window.addEventListener('click', (e) => {
     shoppingList.forEach(el => {
       const founded = data.products.find(element => element.title === el)
       summaryPrice += founded!.price;
+      localStorage.setItem('summaryPrice', summaryPrice.toString())
     })
   }
   document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
