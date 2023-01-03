@@ -9,6 +9,8 @@ import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
 
+
+let shoppingList: string[];
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
@@ -25,6 +27,13 @@ const separator: Separator = {
   category: [],
   brand: [],
 };
+if (localStorage.getItem('shoppingList') !== undefined) {
+  let get: string  = localStorage.getItem('shoppingList')!
+  shoppingList = JSON.parse(get)
+} else {
+  shoppingList = [];
+}
+
 
 function upperFilter(e?: string) { // расставляет ползунки цены и стока в зависимости от оставшихся элементов
   let ev: string;
@@ -93,7 +102,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
 
 function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
   if (window.location.search.length > 1) {
-    const getFilter = getRoute(window.location.search);
+    const getFilter = getRoute(window.location.search, separator);
     activeFilter = getFilter;
   } else if (localStorage.getItem('activeFilter') === null) {
     activeFilter = {
@@ -248,8 +257,16 @@ function resetFilters() {
   placeToStorage();
   setRoute(activeFilter);
 }
+
+function showMain () {
+  let central = document.querySelector('.central') as HTMLElement;
+  let cart = document.querySelector('.cart') as HTMLElement;
+  central.style.display = 'block';
+  cart.style.display = 'none';
+}
+
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
-document.querySelector('.main-navigation_online-store')!.addEventListener('click', resetFilters);
+document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
 
 const optionElements = document.querySelector('.select');
 optionElements!.addEventListener('change', (event) => {
@@ -273,3 +290,29 @@ window.addEventListener('popstate', () => {
   }
   placeCheckBoxes();
 });
+
+document.querySelector('.basket')!.addEventListener('click', () => {
+  let central = document.querySelector('.central') as HTMLElement;
+  let cart = document.querySelector('.cart') as HTMLElement;
+  central.style.display = 'none';
+  cart.style.display = 'block';
+})
+
+
+
+
+
+window.addEventListener('click', (e) => {
+  let summaryPrice:number = 0;
+  const event = e.target as HTMLElement;
+  if (event.innerHTML === 'ADD TO CART') {
+    shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
+    localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+    shoppingList.forEach(el => {
+      const founded = data.products.find(element => element.title === el)
+      summaryPrice += founded!.price;
+    })
+  }
+  document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+
+})

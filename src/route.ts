@@ -56,7 +56,7 @@ export function setRoute(obj: Obj):void {
   }
 }
 
-export function getRoute(str: string) {
+export function getRoute(str: string, separator: { category: string[], brand: string[] }) {
   const obrStr = str.replace(/%20/g, ' ');
   const newStr = obrStr.slice(1, obrStr.length);
   const newArr = newStr.split('&');
@@ -70,11 +70,19 @@ export function getRoute(str: string) {
     const insideArr = el.split(':');
     if (insideArr[0] === 'category') {
       const insideCategory = insideArr[1].split('|');
-      insideCategory.forEach((elem) => newObj.category.push(elem));
+      insideCategory.forEach((elem) => {
+        if (separator.category.includes(elem)) {
+          newObj.category.push(elem);
+        }
+      });
     }
     if (insideArr[0] === 'brand') {
       const insideBrand = insideArr[1].split('|');
-      insideBrand.forEach((elem) => newObj.brand.push(elem));
+      insideBrand.forEach((elem) => {
+        if (separator.brand.includes(elem)) {
+          newObj.brand.push(elem);
+        }
+      });
     }
     if (insideArr[0] === 'price') {
       const insideBrand = insideArr[1].split('|');
