@@ -4,10 +4,11 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
-import { setRoute, getRoute } from './route';
+import { setRoute, getRoute, checkPage, showMain } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
+import { placeToCart, clearProducts, clearButtonCart } from './cart';
 
 
 let shoppingList: string[];
@@ -16,6 +17,8 @@ const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
 const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
+const clearCartButton = document.querySelector('.clear-cart-button')
+let summaryPrice:number = 0;
 let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
   category: [],
@@ -27,11 +30,17 @@ const separator: Separator = {
   category: [],
   brand: [],
 };
-if (localStorage.getItem('shoppingList') !== undefined) {
+if (localStorage.getItem('shoppingList') !== null) {
   let get: string  = localStorage.getItem('shoppingList')!
   shoppingList = JSON.parse(get)
+  document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
+  document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`
 } else {
   shoppingList = [];
+}
+if (localStorage.getItem('summaryPrice') !== null) {
+  document.querySelector('.total-price')!.innerHTML = `Cart total: ${Number(localStorage.getItem('summaryPrice'))}`
+  document.querySelector('.total-in-block')!.innerHTML = `Total: ${Number(localStorage.getItem('summaryPrice'))}`
 }
 
 
@@ -93,6 +102,8 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
       filteredData.push(getting);
     }
   });
+  const found = document.querySelector('.span-main-header') as HTMLElement;
+  found.innerHTML = `Found: ${filteredData.length}`
   const selected = document.querySelector('.select') as HTMLSelectElement;
   sortDate(selected.value, filteredData);
   deleteCardsProduct();// удаление карточек перед формированием нового набора
@@ -126,7 +137,7 @@ function checkURL(e?: string) { // чекает юрл, чтобы заполн�
   const div = document.createElement('div');
   div.classList.add('aside-block_item-category');
   const divv = document.createElement('div');
-  div.classList.add('aside-block_item-brands');
+  divv.classList.add('aside-block_item-brands');
   /* eslint-disable-next-line */
   for (const i of data.products) {
     if (!arr.includes(i.category)) { // Тут заполняются названиями первые два блока
@@ -258,12 +269,7 @@ function resetFilters() {
   setRoute(activeFilter);
 }
 
-function showMain () {
-  let central = document.querySelector('.central') as HTMLElement;
-  let cart = document.querySelector('.cart') as HTMLElement;
-  central.style.display = 'block';
-  cart.style.display = 'none';
-}
+
 
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
@@ -289,6 +295,7 @@ window.addEventListener('popstate', () => {
     checkURL();
   }
   placeCheckBoxes();
+  checkPage();
 });
 
 document.querySelector('.basket')!.addEventListener('click', () => {
@@ -296,23 +303,31 @@ document.querySelector('.basket')!.addEventListener('click', () => {
   let cart = document.querySelector('.cart') as HTMLElement;
   central.style.display = 'none';
   cart.style.display = 'block';
+  window.history.pushState({}, '', 'cart');
+  checkPage();
 })
 
-
-
-
-
 window.addEventListener('click', (e) => {
-  let summaryPrice:number = 0;
   const event = e.target as HTMLElement;
   if (event.innerHTML === 'ADD TO CART') {
+    clearProducts()
     shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
     shoppingList.forEach(el => {
       const founded = data.products.find(element => element.title === el)
       summaryPrice += founded!.price;
+      localStorage.setItem('summaryPrice', summaryPrice.toString())
+      document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+      document.querySelector('.total-in-block')!.innerHTML = `Total: ${summaryPrice}`
+      document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
+      document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`
+      placeToCart(founded!)
     })
   }
-  document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+})
 
+clearCartButton?.addEventListener('click', () => {
+  clearButtonCart()
+  shoppingList = [];
+  summaryPrice = 0;
 })
