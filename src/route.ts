@@ -98,18 +98,17 @@ export function getRoute(str: string, separator: { category: string[], brand: st
 
   return newObj;
 }
-export function showMain () {
-  let central = document.querySelector('.central') as HTMLElement;
-  let cart = document.querySelector('.cart') as HTMLElement;
+export function showMain() {
+  const central = document.querySelector('.central') as HTMLElement;
+  const cart = document.querySelector('.cart') as HTMLElement;
   central.style.display = 'block';
   cart.style.display = 'none';
   /* eslint-disable-next-line */
   window.history.replaceState({}, '', '/');
 }
 
-export function checkPage () {
+export function checkPage() {
   if (window.location.pathname === '/') {
-    showMain()
+    showMain();
   }
-
 }
