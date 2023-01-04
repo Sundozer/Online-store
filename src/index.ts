@@ -137,7 +137,7 @@ function checkURL(e?: string) { // чекает юрл, чтобы заполн�
   const div = document.createElement('div');
   div.classList.add('aside-block_item-category');
   const divv = document.createElement('div');
-  div.classList.add('aside-block_item-brands');
+  divv.classList.add('aside-block_item-brands');
   /* eslint-disable-next-line */
   for (const i of data.products) {
     if (!arr.includes(i.category)) { // Тут заполняются названиями первые два блока

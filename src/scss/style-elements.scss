@@ -6,6 +6,7 @@
     border: 2px solid rgb(255, 115, 0);
     width: 35px;
     height: 35px;
+    
 }
 .buttons-card {
     width: 95px;
@@ -19,3 +20,34 @@
     margin-top: 70px;
     margin-bottom: 20px;
 }
+.wrap-style {
+    background-color: brown;
+}
+.wrap-buttons {
+    display: flex;
+    margin-right: 10px;
+    width: 80px;
+    justify-content: space-between;
+  }
+  
+  .wrap-span {
+    display: flex;
+  }
+  .grid {
+    border: 1px solid rgb(255, 115, 0);
+    margin-bottom: 2px;
+    width: 4px;
+    height: 4px;
+  }
+  .grid-big {
+    width: 8px;
+    height: 8px;
+  }
+  .grid-wrap {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+  }
