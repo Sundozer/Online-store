@@ -316,6 +316,14 @@ function createCart () {
     document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`;
     placeToCart(founded!);
   });
+  if (shoppingList.length === 0) {
+    localStorage.setItem('summaryPrice', summaryPrice.toString());
+    document.querySelector('.total-price')!.innerHTML = `Cart total: 0`;
+    document.querySelector('.total-in-block')!.innerHTML = `Total: 0`;
+    document.querySelector('.basket')!.innerHTML = `Cart`;
+    document.querySelector('.products-in-block')!.innerHTML = `Products: 0`;
+  }
+  summaryPrice = 0;
 }
 if (localStorage.getItem('shoppingList') !== null) {
   createCart();
@@ -329,6 +337,15 @@ window.addEventListener('click', (e) => {
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
     createCart()
   }
+  if (event.innerHTML === 'Del') {
+    const elem = event.parentElement?.previousElementSibling?.firstElementChild?.innerHTML
+    shoppingList.splice(shoppingList.indexOf(elem!), 1)
+    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+    clearProducts();
+    createCart()
+  }
+
+  
 });
 
 clearCartButton?.addEventListener('click', () => {

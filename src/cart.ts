@@ -12,6 +12,8 @@ export function placeToCart(obj: IFilteredData) {
   const innerDiv = document.createElement('div');
   const productTitle = document.createElement('p');
   const productDesc = document.createElement('p');
+  const productCost = document.createElement('div');
+  const delButton = document.createElement('button');
   products.append(div);
   div.classList.add('one-of-items');
   innerDiv.classList.add('product-description');
@@ -21,17 +23,12 @@ export function placeToCart(obj: IFilteredData) {
   div.append(img)
   img.src = `${obj.images[0]}`
   div.append(innerDiv)
+  div.append(productCost)
   innerDiv.append(productTitle)
   innerDiv.append(productDesc)
   productTitle.innerHTML = `${obj.title}`
   productDesc.innerHTML = `${obj.description}`
-
-
-
-
-
-  
-
+  productCost.innerHTML = `<p>${obj.price}$</p><button class="del-button">Del</button>`
 }
 
 export function clearButtonCart() {
