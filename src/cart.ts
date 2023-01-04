@@ -10,18 +10,28 @@ export function placeToCart(obj: IFilteredData) {
   const img = document.createElement('img');
   const div = document.createElement('div');
   const innerDiv = document.createElement('div');
+  const productTitle = document.createElement('p');
+  const productDesc = document.createElement('p');
   products.append(div);
   div.classList.add('one-of-items');
+  innerDiv.classList.add('product-description');
+  img.classList.add('back-img');
+  productTitle.classList.add('product-title');
+  productDesc.classList.add('product-desc');
+  div.append(img)
+  img.src = `${obj.images[0]}`
+  div.append(innerDiv)
+  innerDiv.append(productTitle)
+  innerDiv.append(productDesc)
+  productTitle.innerHTML = `${obj.title}`
+  productDesc.innerHTML = `${obj.description}`
+
 
 
 
 
   
-  div.append(innerDiv);
-  innerDiv.style.background = `url(${obj.images[0]})`;
-  innerDiv.style.backgroundRepeat = 'no-repeat';
-  innerDiv.style.backgroundSize = 'cover';
-  innerDiv.classList.add('back-img');
+
 }
 
 export function clearButtonCart() {
