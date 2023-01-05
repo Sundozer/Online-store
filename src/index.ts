@@ -10,7 +10,7 @@ import {
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
-import { placeToCart, clearProducts, clearButtonCart } from './cart';
+import { placeToCart, clearProducts, clearButtonCart, buy, hidePayment } from './cart';
 
 let shoppingList: string[];
 const asideBlock = document.querySelector('.aside-block');
@@ -344,7 +344,12 @@ window.addEventListener('click', (e) => {
     clearProducts();
     createCart()
   }
-
+  if (event.innerHTML === 'Buy now!') {
+    buy()
+  }
+  if (event.className === 'payment') {
+    hidePayment()
+  }
   
 });
 

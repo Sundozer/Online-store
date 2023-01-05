@@ -40,3 +40,13 @@ export function clearButtonCart() {
   document.querySelector('.products-in-block')!.innerHTML = 'Products: 0';
   clearProducts();
 }
+
+export function buy () {
+  const payment = document.querySelector('.payment') as HTMLElement;
+  payment.style.display = 'flex'
+}
+
+export function hidePayment () {
+  const payment = document.querySelector('.payment') as HTMLElement;
+  payment.style.display = 'none'
+}
