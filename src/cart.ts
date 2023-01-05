@@ -20,15 +20,15 @@ export function placeToCart(obj: IFilteredData) {
   img.classList.add('back-img');
   productTitle.classList.add('product-title');
   productDesc.classList.add('product-desc');
-  div.append(img)
-  img.src = `${obj.images[0]}`
-  div.append(innerDiv)
-  div.append(productCost)
-  innerDiv.append(productTitle)
-  innerDiv.append(productDesc)
-  productTitle.innerHTML = `${obj.title}`
-  productDesc.innerHTML = `${obj.description}`
-  productCost.innerHTML = `<p>${obj.price}$</p><button class="del-button">Del</button>`
+  div.append(img);
+  img.src = `${obj.images[0]}`;
+  div.append(innerDiv);
+  div.append(productCost);
+  innerDiv.append(productTitle);
+  innerDiv.append(productDesc);
+  productTitle.innerHTML = `${obj.title}`;
+  productDesc.innerHTML = `${obj.description}`;
+  productCost.innerHTML = `<p>${obj.price}$</p><button class="del-button">Del</button>`;
 }
 
 export function clearButtonCart() {
@@ -39,4 +39,14 @@ export function clearButtonCart() {
   document.querySelector('.basket')!.innerHTML = 'Cart';
   document.querySelector('.products-in-block')!.innerHTML = 'Products: 0';
   clearProducts();
+}
+
+export function buy() {
+  const payment = document.querySelector('.payment') as HTMLElement;
+  payment.style.display = 'flex';
+}
+
+export function hidePayment() {
+  const payment = document.querySelector('.payment') as HTMLElement;
+  payment.style.display = 'none';
 }

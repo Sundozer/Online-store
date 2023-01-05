@@ -10,7 +10,9 @@ import {
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
-import { placeToCart, clearProducts, clearButtonCart } from './cart';
+import {
+  placeToCart, clearProducts, clearButtonCart, buy, hidePayment,
+} from './cart';
 
 let shoppingList: string[];
 const asideBlock = document.querySelector('.aside-block');
@@ -305,7 +307,7 @@ document.querySelector('.basket')!.addEventListener('click', () => {
   checkPage();
 });
 
-function createCart () {
+function createCart() {
   shoppingList.forEach((el) => {
     const founded = data.products.find((element) => element.title === el);
     summaryPrice += founded!.price;
@@ -318,10 +320,10 @@ function createCart () {
   });
   if (shoppingList.length === 0) {
     localStorage.setItem('summaryPrice', summaryPrice.toString());
-    document.querySelector('.total-price')!.innerHTML = `Cart total: 0`;
-    document.querySelector('.total-in-block')!.innerHTML = `Total: 0`;
-    document.querySelector('.basket')!.innerHTML = `Cart`;
-    document.querySelector('.products-in-block')!.innerHTML = `Products: 0`;
+    document.querySelector('.total-price')!.innerHTML = 'Cart total: 0';
+    document.querySelector('.total-in-block')!.innerHTML = 'Total: 0';
+    document.querySelector('.basket')!.innerHTML = 'Cart';
+    document.querySelector('.products-in-block')!.innerHTML = 'Products: 0';
   }
   summaryPrice = 0;
 }
@@ -335,17 +337,21 @@ window.addEventListener('click', (e) => {
     clearProducts();
     shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML);
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-    createCart()
+    createCart();
   }
   if (event.innerHTML === 'Del') {
-    const elem = event.parentElement?.previousElementSibling?.firstElementChild?.innerHTML
-    shoppingList.splice(shoppingList.indexOf(elem!), 1)
+    const elem = event.parentElement?.previousElementSibling?.firstElementChild?.innerHTML;
+    shoppingList.splice(shoppingList.indexOf(elem!), 1);
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
     clearProducts();
-    createCart()
+    createCart();
   }
-
-  
+  if (event.innerHTML === 'Buy now!') {
+    buy();
+  }
+  if (event.className === 'payment') {
+    hidePayment();
+  }
 });
 
 clearCartButton?.addEventListener('click', () => {
