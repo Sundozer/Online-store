@@ -4,6 +4,21 @@ import { sortDate } from './sort';
 
 const mainContainerCards = document.querySelector('.main-container-cards');
 
+function addBlockCard(framesСard: HTMLElement) {
+  const block = document.createElement('div');
+  framesСard.append(block);
+  block.classList.add('block');
+  return block;
+}
+
+function addButtonCard(framesСard: HTMLElement, textButton: string) {
+  const btn = document.createElement('button');
+  framesСard.append(btn);
+  btn.classList.add('buttons');
+  btn.classList.add('buttons-card');
+  btn.textContent = `${textButton}`;
+}
+
 function addBackgroundImg(key: number, framesСard: HTMLElement, objectCardsFilter: IFilteredData[]) {
   framesСard.style.background = `url(${objectCardsFilter[key].images[0]})`;
   framesСard.style.backgroundRepeat = 'no-repeat';
@@ -66,19 +81,4 @@ export function deleteCardsProduct() {
   if (mainContainerCards !== null) {
     mainContainerCards.replaceChildren();
   }
-}
-
-function addBlockCard(framesСard: HTMLElement) {
-  const block = document.createElement('div');
-  framesСard.append(block);
-  block.classList.add('block');
-  return block;
-}
-
-function addButtonCard(framesСard: HTMLElement, textButton: string) {
-  const btn = document.createElement('button');
-  framesСard.append(btn);
-  btn.classList.add('buttons');
-  btn.classList.add('buttons-card');
-  btn.textContent = `${textButton}`;
 }
