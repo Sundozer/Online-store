@@ -145,7 +145,6 @@ input[type=range]::-ms-thumb {
   width: 95vw;
   min-height: 100vh;
   display: none;
-  cursor: pointer;
   
   .items-block {
     margin: 20px;
@@ -165,9 +164,22 @@ input[type=range]::-ms-thumb {
         }
         .products-list {
           .one-of-items {
+            display: flex;
+            margin-top: 10px;
+            border: 1px solid $borders;
             .back-img {
-              width: 180px;
-              height: 140px;
+              height: 100px;
+            }
+            .product-description {
+              width: 100%;
+              text-align: center;
+              .product-title {
+                text-align: center;
+              }
+              .product-desc {
+                text-align: center;
+                font-size: 12px;
+              }
             }
           }
         }
@@ -189,6 +201,10 @@ input[type=range]::-ms-thumb {
         .clear-cart-button {
           background-color: $borders;
           border-radius: 15px;
+        }
+        .buy-button {
+          margin-top: 30px;
+          width: 30%;
         }
       }
     }
