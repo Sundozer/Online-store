@@ -274,14 +274,6 @@ function resetFilters() {
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
 
-const optionElements = document.querySelector('.select');
-optionElements!.addEventListener('change', (event) => {
-  const target = event.target as HTMLSelectElement;
-  // getNewData();
-  sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
-  deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
-  createCardsProduct(filteredData);
-});
 window.addEventListener('popstate', () => {
   if (window.location.search.length < 2) {
     activeFilter = {
