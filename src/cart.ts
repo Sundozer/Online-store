@@ -31,6 +31,13 @@ export function placeToCart(obj: IFilteredData) {
   productCost.innerHTML = `<p>${obj.price}$</p><button class="del-button">Del</button>`;
 }
 
+export function showCart() {
+  const central = document.querySelector('.central') as HTMLElement;
+  const cart = document.querySelector('.cart') as HTMLElement;
+  central.style.display = 'none';
+  cart.style.display = 'block';
+}
+
 export function clearButtonCart() {
   localStorage.removeItem('shoppingList');
   localStorage.removeItem('summaryPrice');

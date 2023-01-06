@@ -5,13 +5,13 @@ import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
 import {
-  setRoute, getRoute, checkPage, showMain,
+  setRoute, getRoute, checkPage, showMain, notFound,
 } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
 import {
-  placeToCart, clearProducts, clearButtonCart, buy, hidePayment,
+  placeToCart, clearProducts, clearButtonCart, buy, hidePayment, showCart,
 } from './cart';
 
 let shoppingList: string[];
@@ -21,6 +21,7 @@ const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
 const clearCartButton = document.querySelector('.clear-cart-button');
+const submit = document.querySelector('.sumbit')! as HTMLButtonElement;
 let summaryPrice = 0;
 let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
@@ -113,21 +114,41 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   upperFilter(e);
 }
 
-function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
-  if (window.location.search.length > 1) {
-    const getFilter = getRoute(window.location.search, separator);
-    activeFilter = getFilter;
-  } else if (localStorage.getItem('activeFilter') === null) {
+function placeToStorage(ev?: string) { // добавляет фильтр в лок хранилище
+  localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
+  getNewData(ev);
+}
+
+function getNewFilter(e?: string) {
+  if (localStorage.getItem('activeFilter') === null) {
     activeFilter = {
       category: [],
       brand: [],
       price: [10, 1749],
       stock: [2, 150],
     };
+    placeToStorage();
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
+    placeToStorage();
+    setRoute(activeFilter);
   }
   getNewData(e);
+}
+
+function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
+  if (window.location.pathname === '/cart') {
+    showCart();
+  } else if (window.location.pathname.length > 1) {
+    notFound();
+  }
+  if (window.location.search.length > 1) {
+    const getFilter = getRoute(window.location.search, separator);
+    activeFilter = getFilter;
+    placeToStorage();
+  }
+
+  getNewFilter(e);
 }
 
 (function category() { // заполняет блоки элементами из даты
@@ -157,11 +178,6 @@ function checkURL(e?: string) { // чекает юрл, чтобы заполн�
   }
   checkURL();
 }());
-
-function placeToStorage(ev?: string) { // добавляет фильтр в лок хранилище
-  localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
-  getNewData(ev);
-}
 
 asideBlock!.addEventListener('click', (event) => { // Ставит и убирает галки в чекбоксах, заполняет первые две строки активного фильтра
   const e = event.target as HTMLElement;
@@ -282,6 +298,7 @@ optionElements!.addEventListener('change', (event) => {
   deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
   createCardsProduct(filteredData);
 });
+
 window.addEventListener('popstate', () => {
   if (window.location.search.length < 2) {
     activeFilter = {
@@ -299,11 +316,8 @@ window.addEventListener('popstate', () => {
 });
 
 document.querySelector('.basket')!.addEventListener('click', () => {
-  const central = document.querySelector('.central') as HTMLElement;
-  const cart = document.querySelector('.cart') as HTMLElement;
-  central.style.display = 'none';
-  cart.style.display = 'block';
   window.history.pushState({}, '', 'cart');
+  showCart();
   checkPage();
 });
 
@@ -359,3 +373,7 @@ clearCartButton?.addEventListener('click', () => {
   shoppingList = [];
   summaryPrice = 0;
 });
+
+// submit.addEventListener('click', (e) => {
+//   e.preventDefault()
+// })
