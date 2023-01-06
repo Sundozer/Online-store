@@ -112,3 +112,10 @@ export function checkPage() {
     showMain();
   }
 }
+
+export function notFound() {
+  const central = document.querySelector('.central') as HTMLElement;
+  const pageNotFound = document.querySelector('.page-not-found') as HTMLElement;
+  central.style.display = 'none';
+  pageNotFound.style.display = 'block';
+}

@@ -11,7 +11,7 @@ import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
 import {
-  placeToCart, clearProducts, clearButtonCart, buy, hidePayment,
+  placeToCart, clearProducts, clearButtonCart, buy, hidePayment, showCart,
 } from './cart';
 
 let shoppingList: string[];
@@ -114,21 +114,37 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   upperFilter(e);
 }
 
-function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
-  if (window.location.search.length > 1) {
-    const getFilter = getRoute(window.location.search, separator);
-    activeFilter = getFilter;
-  } else if (localStorage.getItem('activeFilter') === null) {
+function placeToStorage(ev?: string) { // добавляет фильтр в лок хранилище
+  localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
+  getNewData(ev);
+}
+
+function getNewFilter(e?: string) {
+  if (localStorage.getItem('activeFilter') === null) {
     activeFilter = {
       category: [],
       brand: [],
       price: [10, 1749],
       stock: [2, 150],
     };
+    placeToStorage();
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
+    placeToStorage();
   }
   getNewData(e);
+}
+
+function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
+  if (window.location.pathname === '/cart') {
+    showCart();
+  }
+  if (window.location.search.length > 1) {
+    const getFilter = getRoute(window.location.search, separator);
+    activeFilter = getFilter;
+    placeToStorage();
+  }
+  getNewFilter(e);
 }
 
 (function category() { // заполняет блоки элементами из даты
@@ -158,11 +174,6 @@ function checkURL(e?: string) { // чекает юрл, чтобы заполн�
   }
   checkURL();
 }());
-
-function placeToStorage(ev?: string) { // добавляет фильтр в лок хранилище
-  localStorage.setItem('activeFilter', JSON.stringify(activeFilter));
-  getNewData(ev);
-}
 
 asideBlock!.addEventListener('click', (event) => { // Ставит и убирает галки в чекбоксах, заполняет первые две строки активного фильтра
   const e = event.target as HTMLElement;
@@ -301,11 +312,8 @@ window.addEventListener('popstate', () => {
 });
 
 document.querySelector('.basket')!.addEventListener('click', () => {
-  const central = document.querySelector('.central') as HTMLElement;
-  const cart = document.querySelector('.cart') as HTMLElement;
-  central.style.display = 'none';
-  cart.style.display = 'block';
   window.history.pushState({}, '', 'cart');
+  showCart();
   checkPage();
 });
 
