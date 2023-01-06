@@ -21,6 +21,7 @@ const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
 const clearCartButton = document.querySelector('.clear-cart-button');
+const submit = document.querySelector('.sumbit')! as HTMLButtonElement;
 let summaryPrice = 0;
 let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
@@ -360,3 +361,7 @@ clearCartButton?.addEventListener('click', () => {
   shoppingList = [];
   summaryPrice = 0;
 });
+
+// submit.addEventListener('click', (e) => {
+//   e.preventDefault()
+// })
