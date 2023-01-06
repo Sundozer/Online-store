@@ -5,7 +5,7 @@ import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
 import {
-  setRoute, getRoute, checkPage, showMain,
+  setRoute, getRoute, checkPage, showMain, notFound,
 } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
@@ -131,6 +131,7 @@ function getNewFilter(e?: string) {
   } else {
     activeFilter = JSON.parse(localStorage.getItem('activeFilter')!);
     placeToStorage();
+    setRoute(activeFilter);
   }
   getNewData(e);
 }
@@ -138,12 +139,15 @@ function getNewFilter(e?: string) {
 function checkURL(e?: string) { // чекает юрл, чтобы заполнить активный фильтр
   if (window.location.pathname === '/cart') {
     showCart();
+  } else if (window.location.pathname.length > 1) {
+    notFound();
   }
   if (window.location.search.length > 1) {
     const getFilter = getRoute(window.location.search, separator);
     activeFilter = getFilter;
     placeToStorage();
   }
+
   getNewFilter(e);
 }
 
