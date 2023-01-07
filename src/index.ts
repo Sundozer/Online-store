@@ -110,10 +110,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   });
   const found = document.querySelector('.span-main-header') as HTMLElement;
   found.innerHTML = `Found: ${filteredData.length}`;
-  const selected = document.querySelector('.select') as HTMLSelectElement;
-  sortDate(selected.value, filteredData);
-  deleteCardsProduct();// удаление карточек перед формированием нового набора
-  createCardsProduct(filteredData);
+  searchProduct()
   upperFilter(e);
 }
 
@@ -272,6 +269,7 @@ function placeCheckBoxes() { // ставит галки на чекбоксах,
 placeCheckBoxes();
 
 function resetFilters() {
+  searchInput.value = ''
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
@@ -288,7 +286,6 @@ function resetFilters() {
   };
   placeToStorage();
   setRoute(activeFilter);
-  searchInput.value = ''
 }
 
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
@@ -371,7 +368,7 @@ clearCartButton?.addEventListener('click', () => {
   summaryPrice = 0;
 });
 
-searchInput?.addEventListener('input', () => {
+function searchProduct () {
   const searchedData: IFilteredData[] = []
   if (filteredData.length !== 0) {
     filteredData.forEach(el => {
@@ -387,6 +384,7 @@ searchInput?.addEventListener('input', () => {
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(searchedData);
   upperFilter();
-})
+}
+searchInput?.addEventListener('input', searchProduct)
 
 
