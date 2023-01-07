@@ -13,6 +13,9 @@ import { sortDate } from './sort';
 import {
   placeToCart, clearProducts, clearButtonCart, buy, hidePayment, showCart,
 } from './cart';
+import { AlladdEventListenerCards } from './AlladdEventListeners';
+
+AlladdEventListenerCards();// все слушатели событий. ну или только некоторые. )
 
 let shoppingList: string[];
 const asideBlock = document.querySelector('.aside-block');
@@ -23,7 +26,7 @@ const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
 const clearCartButton = document.querySelector('.clear-cart-button');
 const searchInput = document.querySelector('.search-main-header') as HTMLInputElement;
 let summaryPrice = 0;
-let filteredData: IFilteredData[] = [];
+export let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
   category: [],
   brand: [],
@@ -291,14 +294,7 @@ function resetFilters() {
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
 
-const optionElements = document.querySelector('.select');
-optionElements!.addEventListener('change', (event) => {
-  const target = event.target as HTMLSelectElement;
-  // getNewData();
-  sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
-  deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
-  createCardsProduct(filteredData);
-});
+
 
 window.addEventListener('popstate', () => {
   if (window.location.search.length < 2) {
@@ -393,15 +389,4 @@ searchInput?.addEventListener('input', () => {
   upperFilter();
 })
 
-const wrapWrap = document.querySelectorAll('.grid-wrap');
-wrapWrap[0].addEventListener('click', (event) => {
-  const target = event.target as HTMLSelectElement;
-  wrapWrap[0].classList.add('wrap-style');
-  wrapWrap[1].classList.remove('wrap-style');
-});
 
-wrapWrap[1].addEventListener('click', (event) => {
-  const target = event.target as HTMLSelectElement;
-  wrapWrap[1].classList.add('wrap-style');
-  wrapWrap[0].classList.remove('wrap-style');
-});
