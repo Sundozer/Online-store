@@ -4,6 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
+import { showFilter } from './mobile';
 import {
   setRoute, getRoute, checkPage, showMain, notFound,
 } from './route';
@@ -25,6 +26,7 @@ const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
 const clearCartButton = document.querySelector('.clear-cart-button');
 const searchInput = document.querySelector('.search-main-header') as HTMLInputElement;
+const burger = document.querySelector('.burger') as HTMLButtonElement;
 let summaryPrice = 0;
 export let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
@@ -387,4 +389,4 @@ function searchProduct () {
 }
 searchInput?.addEventListener('input', searchProduct)
 
-
+burger.addEventListener('click', showFilter)

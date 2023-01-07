@@ -127,6 +127,10 @@ input[type=range]::-ms-thumb {
   @media (max-width: 1160px) {
     width: 100vw;
   }
+  @media (max-width: 500px) {
+    flex-direction: column;
+
+  }
 }
 .header {
   background-color: $header-footer;
@@ -139,8 +143,8 @@ input[type=range]::-ms-thumb {
   .aside {
     width: 22%;
   }
-  
 }
+
 .cart {
   width: 95vw;
   min-height: 100vh;
@@ -197,6 +201,7 @@ input[type=range]::-ms-thumb {
         }
         .promocode {
           text-align: center;
+          width: 40%;
         }
         .clear-cart-button {
           background-color: $borders;
@@ -214,6 +219,9 @@ input[type=range]::-ms-thumb {
 
 .one-of-items {
   display: flex;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .basket {
@@ -236,15 +244,20 @@ input[type=range]::-ms-thumb {
   flex-direction: column;
   align-items: center;
   height: 90vh;
-  
-  // .aside-block_category {
-  //   height: 150px;
-  //   overflow: hidden;
-  // }
+  @media (max-width: 500px) {
+    width: 100vw;
+    height: 70px;
+  }
   .aside-buttons {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    .burger {
+      display: none;
+      @media (max-width: 500px) {
+        display: block;
+      }
+    }
   }
   .aside-block__general {
     border: 2px solid $borders;
@@ -301,6 +314,30 @@ input[type=range]::-ms-thumb {
 .aside-block_one-of-items {
   cursor: pointer;
 }
+
+.aside-block_category.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.aside-block_brand.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.aside-block_price.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.aside-block_stock.aside-block_price.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+
+
 
 .payment {
   position: fixed;

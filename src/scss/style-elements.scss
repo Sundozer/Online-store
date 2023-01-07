@@ -1,5 +1,6 @@
 .select {
-    width: 150px;
+    width: 40%;
+    max-width: 150px;
     margin-left: 20px;
 }
 .buttons {
@@ -29,6 +30,9 @@
     margin-right: 10px;
     width: 80px;
     justify-content: space-between;
+    @media (max-width: 650px) {
+      display: none;
+    }
   }
   
   .wrap-span {
