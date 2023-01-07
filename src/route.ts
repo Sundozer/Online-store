@@ -5,6 +5,13 @@ type Obj = {
   stock: number[],
 };
 
+export function notFound() {
+  const central = document.querySelector('.central') as HTMLElement;
+  const pageNotFound = document.querySelector('.page-not-found') as HTMLElement;
+  central.style.display = 'none';
+  pageNotFound.style.display = 'block';
+}
+
 export function setRoute(obj: Obj):void {
   let route = '';
   let part1 = '';
@@ -73,6 +80,8 @@ export function getRoute(str: string, separator: { category: string[], brand: st
       insideCategory.forEach((elem) => {
         if (separator.category.includes(elem)) {
           newObj.category.push(elem);
+        } else {
+          notFound();
         }
       });
     }
@@ -81,6 +90,8 @@ export function getRoute(str: string, separator: { category: string[], brand: st
       insideBrand.forEach((elem) => {
         if (separator.brand.includes(elem)) {
           newObj.brand.push(elem);
+        } else {
+          notFound();
         }
       });
     }

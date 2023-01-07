@@ -131,22 +131,27 @@
   </div>
 
   <div class="payment">
-    <form class="pay-block">
+    <form class="pay-block" onsubmit="return false">
       <p>Personal details</p>
-      <input type="text" placeholder="Name">
-      <input type="tel" placeholder="Phone number">
-      <input type="text" placeholder="Delivery address">
-      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Name" required>
+      <input type="tel" placeholder="Phone number" required>
+      <input type="text" placeholder="Delivery address" required>
+      <input type="email" placeholder="Email" required>
       <p>Credit card details</p>
       <div class="credit-card">
-        <input type="text" placeholder="Card number" class="card-number">
+        <input type="text" placeholder="Card number" class="card-number" pattern="[0-9]{16}" required>
         <div class="date-cvv">
-          <input type="text" placeholder="Date" class="card-date">
-          <input type="text" placeholder="CVV" class="card-date">
+          <input type="text" placeholder="Date" class="card-date" pattern="[0-1][0-9]{3}" required>
+          <input type="text" placeholder="CVV" class="cvv" pattern="[0-9]{3}"  required>
         </div>
       </div>
-      <button>Confirm</button>
+      <input type="submit" placeholder="Send" class="sumbit" required>
+      <!-- <button>Confirm</button> -->
     </form>
+  </div>
+
+  <div class="page-not-found">
+    <h1 style="text-align: center;">Page not found</h1>
   </div>
  
   <footer class="footer">
