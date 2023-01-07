@@ -321,3 +321,12 @@ clearCartButton?.addEventListener('click', () => {
   shoppingList = [];
   summaryPrice = 0;
 });
+
+const optionElements = document.querySelector('.select');
+  optionElements!.addEventListener('change', (event) => {
+  const target = event.target as HTMLSelectElement;
+  // getNewData();
+  sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
+  deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
+  createCardsProduct(filteredData);
+})
