@@ -2,6 +2,9 @@
   width: 88%;
   border: 2px solid rgb(255, 115, 0);
   // border: 2px solid rgba(161, 159, 27, 0.377);
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 }
 .main-header {
   height: 40px;
@@ -10,6 +13,11 @@
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  .search-main-header {
+    width: 40%;
+    max-width: 150px;
+  }
 }
 .main-container-cards {
   margin: 10px;

@@ -4,6 +4,7 @@ import './scss/style-elements.scss';
 import './scss/style-card.scss';
 import data from './data';
 import newData from './newData';
+import { showFilter } from './mobile';
 import {
   setRoute, getRoute, checkPage, showMain, notFound,
 } from './route';
@@ -25,6 +26,7 @@ const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
 const clearCartButton = document.querySelector('.clear-cart-button');
 const searchInput = document.querySelector('.search-main-header') as HTMLInputElement;
+const burger = document.querySelector('.burger') as HTMLButtonElement;
 let summaryPrice = 0;
 export let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
@@ -110,10 +112,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   });
   const found = document.querySelector('.span-main-header') as HTMLElement;
   found.innerHTML = `Found: ${filteredData.length}`;
-  const selected = document.querySelector('.select') as HTMLSelectElement;
-  sortDate(selected.value, filteredData);
-  deleteCardsProduct();// удаление карточек перед формированием нового набора
-  createCardsProduct(filteredData);
+  searchProduct()
   upperFilter(e);
 }
 
@@ -272,6 +271,7 @@ function placeCheckBoxes() { // ставит галки на чекбоксах,
 placeCheckBoxes();
 
 function resetFilters() {
+  searchInput.value = ''
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
@@ -288,7 +288,6 @@ function resetFilters() {
   };
   placeToStorage();
   setRoute(activeFilter);
-  searchInput.value = ''
 }
 
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
@@ -371,7 +370,7 @@ clearCartButton?.addEventListener('click', () => {
   summaryPrice = 0;
 });
 
-searchInput?.addEventListener('input', () => {
+function searchProduct () {
   const searchedData: IFilteredData[] = []
   if (filteredData.length !== 0) {
     filteredData.forEach(el => {
@@ -387,6 +386,7 @@ searchInput?.addEventListener('input', () => {
   deleteCardsProduct();// удаление карточек перед формированием нового набора
   createCardsProduct(searchedData);
   upperFilter();
-})
+}
+searchInput?.addEventListener('input', searchProduct)
 
-
+burger.addEventListener('click', showFilter)
