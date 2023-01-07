@@ -21,7 +21,7 @@ const input2 = document.querySelector('.input-price2')! as HTMLInputElement;
 const input3 = document.querySelector('.input-stock3')! as HTMLInputElement;
 const input4 = document.querySelector('.input-stock4')! as HTMLInputElement;
 const clearCartButton = document.querySelector('.clear-cart-button');
-const submit = document.querySelector('.sumbit')! as HTMLButtonElement;
+const searchInput = document.querySelector('.search-main-header') as HTMLInputElement;
 let summaryPrice = 0;
 let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
@@ -285,6 +285,7 @@ function resetFilters() {
   };
   placeToStorage();
   setRoute(activeFilter);
+  searchInput.value = ''
 }
 
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
@@ -374,6 +375,20 @@ clearCartButton?.addEventListener('click', () => {
   summaryPrice = 0;
 });
 
-// submit.addEventListener('click', (e) => {
-//   e.preventDefault()
-// })
+searchInput?.addEventListener('input', () => {
+  const searchedData: IFilteredData[] = []
+  if (filteredData.length !== 0) {
+    filteredData.forEach(el => {
+      const inputtedValue = searchInput.value.toLowerCase();
+      const elTitle = el.title.toLowerCase();
+      if (elTitle.includes(inputtedValue)) {
+        searchedData.push(el)
+      }
+    })
+  }
+  const selected = document.querySelector('.select') as HTMLSelectElement;
+  sortDate(selected.value, searchedData);
+  deleteCardsProduct();// удаление карточек перед формированием нового набора
+  createCardsProduct(searchedData);
+  upperFilter();
+})
