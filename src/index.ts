@@ -12,6 +12,7 @@ import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { sortDate } from './sort';
 import { placeToCart, clearProducts, clearButtonCart } from './cart';
 
+
 let shoppingList: string[];
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
@@ -295,24 +296,24 @@ document.querySelector('.basket')!.addEventListener('click', () => {
   cart.style.display = 'block';
   window.history.pushState({}, '', 'cart');
   checkPage();
-});
+})
 
 window.addEventListener('click', (e) => {
   const event = e.target as HTMLElement;
   if (event.innerHTML === 'ADD TO CART') {
-    clearProducts();
-    shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML);
-    localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-    shoppingList.forEach((el) => {
-      const founded = data.products.find((element) => element.title === el);
+    clearProducts()
+    shoppingList.push(event.parentElement!.previousElementSibling!.previousElementSibling!.innerHTML)
+    localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+    shoppingList.forEach(el => {
+      const founded = data.products.find(element => element.title === el)
       summaryPrice += founded!.price;
-      localStorage.setItem('summaryPrice', summaryPrice.toString());
-      document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`;
-      document.querySelector('.total-in-block')!.innerHTML = `Total: ${summaryPrice}`;
-      document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`;
-      document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`;
-      placeToCart(founded!);
-    });
+      localStorage.setItem('summaryPrice', summaryPrice.toString())
+      document.querySelector('.total-price')!.innerHTML = `Cart total: ${summaryPrice}`
+      document.querySelector('.total-in-block')!.innerHTML = `Total: ${summaryPrice}`
+      document.querySelector('.basket')!.innerHTML = `Cart: ${shoppingList.length}`
+      document.querySelector('.products-in-block')!.innerHTML = `Products: ${shoppingList.length}`
+      placeToCart(founded!)
+    })
   }
 });
 
@@ -320,13 +321,4 @@ clearCartButton?.addEventListener('click', () => {
   clearButtonCart();
   shoppingList = [];
   summaryPrice = 0;
-});
-
-const optionElements = document.querySelector('.select');
-  optionElements!.addEventListener('change', (event) => {
-  const target = event.target as HTMLSelectElement;
-  // getNewData();
-  sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
-  deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
-  createCardsProduct(filteredData);
 })
