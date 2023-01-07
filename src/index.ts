@@ -377,3 +377,16 @@ clearCartButton?.addEventListener('click', () => {
 // submit.addEventListener('click', (e) => {
 //   e.preventDefault()
 // })
+
+const wrapWrap = document.querySelectorAll('.grid-wrap');
+wrapWrap[0].addEventListener('click', (event) => {
+  const target = event.target as HTMLSelectElement;
+  wrapWrap[0].classList.add('wrap-style');
+  wrapWrap[1].classList.remove('wrap-style');
+});
+
+wrapWrap[1].addEventListener('click', (event) => {
+  const target = event.target as HTMLSelectElement;
+  wrapWrap[1].classList.add('wrap-style');
+  wrapWrap[0].classList.remove('wrap-style');
+});

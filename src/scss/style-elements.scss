@@ -22,6 +22,7 @@
 }
 .wrap-style {
     background-color: brown;
+    
 }
 .wrap-buttons {
     display: flex;
@@ -50,4 +51,7 @@
     justify-content: space-evenly;
     align-items: center;
     cursor: pointer;
+  }
+  .grid-wrap:hover {
+    border: 2px solid rgb(180, 200, 0);
   }
