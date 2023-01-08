@@ -14,6 +14,7 @@ import { sortDate } from './sort';
 import {
   placeToCart, clearProducts, clearButtonCart, buy, hidePayment, showCart,
 } from './cart';
+/* eslint-disable-next-line */
 import { AlladdEventListenerCards } from './AlladdEventListeners';
 
 AlladdEventListenerCards();// все слушатели событий. ну или только некоторые. )
@@ -28,6 +29,7 @@ const clearCartButton = document.querySelector('.clear-cart-button');
 const searchInput = document.querySelector('.search-main-header') as HTMLInputElement;
 const burger = document.querySelector('.burger') as HTMLButtonElement;
 let summaryPrice = 0;
+/* eslint-disable-next-line */
 export let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
   category: [],
@@ -102,6 +104,24 @@ function upperFilter(e?: string) { // расставляет ползунки ц
   }
 }
 
+function searchProduct() {
+  const searchedData: IFilteredData[] = [];
+  if (filteredData.length !== 0) {
+    filteredData.forEach((el) => {
+      const inputtedValue = searchInput.value.toLowerCase();
+      const elTitle = el.title.toLowerCase();
+      if (elTitle.includes(inputtedValue)) {
+        searchedData.push(el);
+      }
+    });
+  }
+  const selected = document.querySelector('.select') as HTMLSelectElement;
+  sortDate(selected.value, searchedData);
+  deleteCardsProduct();// удаление карточек перед формированием нового набора
+  createCardsProduct(searchedData);
+  upperFilter();
+}
+
 function getNewData(e?: string) { // Создаёт отфильтрованный список
   filteredData = [];
   data.products.forEach((el) => {
@@ -112,7 +132,7 @@ function getNewData(e?: string) { // Создаёт отфильтрованны
   });
   const found = document.querySelector('.span-main-header') as HTMLElement;
   found.innerHTML = `Found: ${filteredData.length}`;
-  searchProduct()
+  searchProduct();
   upperFilter(e);
 }
 
@@ -148,9 +168,9 @@ function checkURL(e?: string) { // чекает юрл, чтобы заполн�
     const getFilter = getRoute(window.location.search, separator);
     activeFilter = getFilter;
     placeToStorage();
+  } else {
+    getNewFilter(e);
   }
-
-  getNewFilter(e);
 }
 
 (function category() { // заполняет блоки элементами из даты
@@ -271,7 +291,7 @@ function placeCheckBoxes() { // ставит галки на чекбоксах,
 placeCheckBoxes();
 
 function resetFilters() {
-  searchInput.value = ''
+  searchInput.value = '';
   activeFilter.category.forEach((el) => {
     const oneOfBoxes = document.getElementById(`${el}`) as HTMLInputElement;
     oneOfBoxes.checked = false;
@@ -293,8 +313,6 @@ function resetFilters() {
 document.querySelector('.reset-filters')!.addEventListener('click', resetFilters);
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
 
-
-
 window.addEventListener('popstate', () => {
   if (window.location.search.length < 2) {
     activeFilter = {
@@ -303,12 +321,12 @@ window.addEventListener('popstate', () => {
       price: [10, 1749],
       stock: [2, 150],
     };
-    getNewData();
+    placeToStorage();
+    checkPage();
   } else {
     checkURL();
   }
   placeCheckBoxes();
-  checkPage();
 });
 
 document.querySelector('.basket')!.addEventListener('click', () => {
@@ -370,23 +388,6 @@ clearCartButton?.addEventListener('click', () => {
   summaryPrice = 0;
 });
 
-function searchProduct () {
-  const searchedData: IFilteredData[] = []
-  if (filteredData.length !== 0) {
-    filteredData.forEach(el => {
-      const inputtedValue = searchInput.value.toLowerCase();
-      const elTitle = el.title.toLowerCase();
-      if (elTitle.includes(inputtedValue)) {
-        searchedData.push(el)
-      }
-    })
-  }
-  const selected = document.querySelector('.select') as HTMLSelectElement;
-  sortDate(selected.value, searchedData);
-  deleteCardsProduct();// удаление карточек перед формированием нового набора
-  createCardsProduct(searchedData);
-  upperFilter();
-}
-searchInput?.addEventListener('input', searchProduct)
+searchInput?.addEventListener('input', searchProduct);
 
-burger.addEventListener('click', showFilter)
+burger.addEventListener('click', showFilter);

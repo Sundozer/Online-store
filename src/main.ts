@@ -15,6 +15,11 @@ function addButtonCard(framesСard: HTMLElement, textButton: string) {
   const btn = document.createElement('button');
   framesСard.append(btn);
   btn.classList.add('buttons');
+  if (textButton === 'ADD TO CART') {
+    btn.style.cursor = 'grab'
+  } else {
+    btn.style.cursor = 'pointer'
+  }
   btn.classList.add('buttons-card');
   btn.textContent = `${textButton}`;
 }
@@ -55,7 +60,7 @@ function addDescriptionCard(key: number, framesСard: HTMLElement, objectCardsFi
     const descriptionCard6 = document.createElement('div');
     descriptionCard.append(descriptionCard6);
     descriptionCard6.textContent = `Stock: ${objectCardsFilter[key].stock}`;
-  }  
+  }
 }
 
 function createCardProduct(key: number, pmainContainerCards:Element, objectCardsFilter: IFilteredData[]) {
