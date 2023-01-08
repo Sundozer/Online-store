@@ -1,7 +1,7 @@
 $header-footer: black;
-$main-color-page: rgb(55, 28, 66);
+$main-color-page: rgb(255, 255, 255);
 $borders: gold;
-$aside-block-back: rgb(99, 0, 0);
+$aside-block-back: rgb(102, 102, 102);
 
 /*Scroll bar nav*/
 ::-webkit-scrollbar {
@@ -390,4 +390,19 @@ input[type=range]::-ms-thumb {
   display: none;
   width: 100%;
   height: 100vh;
+}
+
+.foot {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .creators {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .svg {
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(340deg) brightness(99%) contrast(102%);
+    width: 20%;
+  }
 }

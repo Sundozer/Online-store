@@ -39,13 +39,17 @@ export function showCart() {
 }
 
 export function clearButtonCart() {
-  localStorage.removeItem('shoppingList');
-  localStorage.removeItem('summaryPrice');
-  document.querySelector('.total-price')!.innerHTML = 'Cart total: 0';
-  document.querySelector('.total-in-block')!.innerHTML = 'Total: 0';
-  document.querySelector('.basket')!.innerHTML = 'Cart';
-  document.querySelector('.products-in-block')!.innerHTML = 'Products: 0';
-  clearProducts();
+  let ifConfirm = confirm('Clear cart?')
+  if (ifConfirm === true) {
+    console.log(confirm)
+    localStorage.removeItem('shoppingList');
+    localStorage.removeItem('summaryPrice');
+    document.querySelector('.total-price')!.innerHTML = 'Cart total: 0';
+    document.querySelector('.total-in-block')!.innerHTML = 'Total: 0';
+    document.querySelector('.basket')!.innerHTML = 'Cart';
+    document.querySelector('.products-in-block')!.innerHTML = 'Products: 0';
+    clearProducts();
+  }
 }
 
 export function buy() {
