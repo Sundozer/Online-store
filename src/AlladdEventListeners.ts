@@ -41,4 +41,10 @@ export function AlladdEventListenerCards() {
     deleteCardsProduct();
     createCardsProduct(filteredData);
   });
+
+  const central = document.querySelector('.central');
+  central!.addEventListener('click', (event) => {
+    const target = event.target as HTMLSelectElement;
+    central?.classList.add('displayNone');
+  });
 }
