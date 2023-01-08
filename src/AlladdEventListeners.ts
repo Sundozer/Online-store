@@ -45,20 +45,21 @@ export function AlladdEventListenerCards() {
     createCardsProduct(filteredData);
   });
 
-  const central = document.querySelector('.central') as HTMLElement;
+  const container = document.querySelector('.container') as HTMLElement;
   const mainContainerCards = document.querySelector('.main-container-cards');  
   mainContainerCards!.addEventListener('click', (event) => {
     const target = event.target as HTMLSelectElement;
     if (target.className === 'buttons buttons-card') {
       // сюда нужно вставить отработку функций по нажатию на кнопку ADD TO CART
       alert('AlladdEventListener.ts строка 54 нужно вставить отработку функций по нажатию на кнопку ADD TO CART');
-    }
-    debugger;
-    central.style.display = 'none';
-    const idTarget: string = target.style.background.slice(5,-26);
-    // console.log(.slice(5,-26));
-    const idCart: IFilteredData = data.products.find(elem => elem.thumbnail === idTarget)!;
-    createDetailedCard(idCart);
-    // debugger;
+    } else {
+      // debugger;
+      container.style.display = 'none';
+      const idTarget: string = target.style.background.slice(5,-26);
+      // console.log(.slice(5,-26));
+      const idCart: IFilteredData = data.products.find(elem => elem.thumbnail === idTarget)!;
+      createDetailedCard(idCart);
+      // debugger;
+    }    
   });
 }

@@ -111,9 +111,12 @@ export function getRoute(str: string, separator: { category: string[], brand: st
 }
 export function showMain() {  
   const cart = document.querySelector('.cart') as HTMLElement;
-  const container = document.querySelector('.container') as HTMLElement;  
+  const container = document.querySelector('.container') as HTMLElement;
+  const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
   container.style.display = 'block';
   cart.style.display = 'none';
+  detailedCard.style.display = 'none';
+  
   /* eslint-disable-next-line */
   window.history.replaceState({}, '', '/');
 }

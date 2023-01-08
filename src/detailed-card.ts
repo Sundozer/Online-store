@@ -2,7 +2,7 @@ import { IFilteredData } from './interfaces';
 
 export function createDetailedCard(obj: IFilteredData) {
 
-  const central = document.querySelector('.central') as HTMLElement;  
+  const container = document.querySelector('.container') as HTMLElement;  
   // const img = document.createElement('img');
   const detailedCart = document.createElement('div');
   // const innerDiv = document.createElement('div');
@@ -11,8 +11,8 @@ export function createDetailedCard(obj: IFilteredData) {
   // const productCost = document.createElement('div');
   // const delButton = document.createElement('button');
   // central.style.display = 'block';
-  central.append(detailedCart);
-  detailedCart.classList.add('card');
+  // container.append(detailedCart);
+  // detailedCart.classList.add('card');
   // innerDiv.classList.add('product-description');
   // img.classList.add('back-img');
   // productTitle.classList.add('product-title');
