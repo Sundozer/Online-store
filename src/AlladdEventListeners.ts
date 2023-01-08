@@ -3,6 +3,7 @@ import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { createCardsProduct, deleteCardsProduct } from './main';
 /* eslint-disable-next-line */
 import { filteredData } from './index';
+import data from './data';
 
 export function AlladdEventListenerCards() {
   const optionElements = document.querySelector('.select') as HTMLSelectElement;
@@ -42,9 +43,16 @@ export function AlladdEventListenerCards() {
     createCardsProduct(filteredData);
   });
 
-  const central = document.querySelector('.central');
-  central!.addEventListener('click', (event) => {
+  const central = document.querySelector('.central') as HTMLElement;
+  const mainContainerCards = document.querySelector('.main-container-cards');  
+  mainContainerCards!.addEventListener('click', (event) => {
     const target = event.target as HTMLSelectElement;
-    central?.classList.add('displayNone');
+    // debugger;
+    // central.style.display = 'none';
+    const idTarget: string = target.style.background.slice(5,-26);
+    // console.log(.slice(5,-26));
+    const idCart: IFilteredData | undefined = data.products.find(elem => elem.thumbnail === idTarget);
+    //функция построения детализированной карточки
+    debugger;
   });
 }

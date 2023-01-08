@@ -2,6 +2,8 @@ import './scss/style.scss';
 import './scss/style-main.scss';
 import './scss/style-elements.scss';
 import './scss/style-card.scss';
+import './scss/detailed-card.scss';
+
 import data from './data';
 import newData from './newData';
 import { showFilter } from './mobile';

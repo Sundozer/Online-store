@@ -113,7 +113,6 @@ export function showMain() {
   const central = document.querySelector('.central') as HTMLElement;
   const cart = document.querySelector('.cart') as HTMLElement;
   central.style.display = 'block';
-  
   cart.style.display = 'none';
   /* eslint-disable-next-line */
   window.history.replaceState({}, '', '/');

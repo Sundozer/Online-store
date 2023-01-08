@@ -25,7 +25,7 @@ function addButtonCard(framesСard: HTMLElement, textButton: string) {
 }
 
 function addBackgroundImg(key: number, framesСard: HTMLElement, objectCardsFilter: IFilteredData[]) {
-  framesСard.style.background = `url(${objectCardsFilter[key].images[0]})`;
+  framesСard.style.background = `url(${objectCardsFilter[key].thumbnail})`;
   framesСard.style.backgroundRepeat = 'no-repeat';
   framesСard.style.backgroundSize = 'cover';
 }
