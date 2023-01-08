@@ -15,7 +15,7 @@ export function AlladdEventListenerCards() {
     deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
     createCardsProduct(filteredData);
   });
-  
+
   const gridWrap = document.querySelectorAll('.grid-wrap');
   if (localStorage.getItem('selectedSize') === 'big') {
     gridWrap[0].classList.add('wrap-style');
