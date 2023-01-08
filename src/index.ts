@@ -19,8 +19,6 @@ import { AlladdEventListenerCards } from './AlladdEventListeners';
 
 AlladdEventListenerCards();// все слушатели событий. ну или только некоторые. )
 
-
-
 let shoppingList: string[];
 const asideBlock = document.querySelector('.aside-block');
 const input1 = document.querySelector('.input-price1')! as HTMLInputElement;
