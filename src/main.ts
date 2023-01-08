@@ -15,6 +15,11 @@ function addButtonCard(framesСard: HTMLElement, textButton: string) {
   const btn = document.createElement('button');
   framesСard.append(btn);
   btn.classList.add('buttons');
+  if (textButton === 'ADD TO CART') {
+    btn.style.cursor = 'grab'
+  } else {
+    btn.style.cursor = 'pointer'
+  }
   btn.classList.add('buttons-card');
   btn.textContent = `${textButton}`;
 }
