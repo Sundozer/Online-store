@@ -14,6 +14,7 @@ import { sortDate } from './sort';
 import {
   placeToCart, clearProducts, clearButtonCart, buy, hidePayment, showCart,
 } from './cart';
+/* eslint-disable-next-line */
 import { AlladdEventListenerCards } from './AlladdEventListeners';
 
 AlladdEventListenerCards();// все слушатели событий. ну или только некоторые. )
@@ -28,6 +29,7 @@ const clearCartButton = document.querySelector('.clear-cart-button');
 const searchInput = document.querySelector('.search-main-header') as HTMLInputElement;
 const burger = document.querySelector('.burger') as HTMLButtonElement;
 let summaryPrice = 0;
+/* eslint-disable-next-line */
 export let filteredData: IFilteredData[] = [];
 let activeFilter: FilterItems = {
   category: [],

@@ -1,6 +1,7 @@
 import { sortDate } from './sort';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
 import { createCardsProduct, deleteCardsProduct } from './main';
+/* eslint-disable-next-line */
 import { filteredData } from './index';
 
 export function AlladdEventListenerCards() {
