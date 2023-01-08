@@ -6,16 +6,15 @@ import { filteredData } from './index';
 
 export function AlladdEventListenerCards() {
   const optionElements = document.querySelector('.select') as HTMLSelectElement;
-  // debugger;
+  optionElements.options.selectedIndex = Number(localStorage.getItem('selectedSort'));
   optionElements!.addEventListener('change', (event) => {
     const target = event.target as HTMLSelectElement;
     localStorage.setItem('selectedSort', String(optionElements.options.selectedIndex));
-    // localStorage.getItem('selectedSort');
     sortDate(target.value, filteredData);// вот эту сортировку наверное тоже надо добавить в твой фильтр, чтобы она подтягивалась
     deleteCardsProduct(); // при фильтрации, типа ткнул сначала с сортировку, потом выбрал группу. И она уже осортирована.
     createCardsProduct(filteredData);
   });
-
+  
   const gridWrap = document.querySelectorAll('.grid-wrap');
   if (localStorage.getItem('selectedSize') === 'big') {
     gridWrap[0].classList.add('wrap-style');
