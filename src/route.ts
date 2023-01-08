@@ -109,10 +109,10 @@ export function getRoute(str: string, separator: { category: string[], brand: st
 
   return newObj;
 }
-export function showMain() {
-  const central = document.querySelector('.central') as HTMLElement;
+export function showMain() {  
   const cart = document.querySelector('.cart') as HTMLElement;
-  central.style.display = 'block';
+  const container = document.querySelector('.container') as HTMLElement;  
+  container.style.display = 'block';
   cart.style.display = 'none';
   /* eslint-disable-next-line */
   window.history.replaceState({}, '', '/');
