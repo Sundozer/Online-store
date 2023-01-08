@@ -55,7 +55,7 @@ function addDescriptionCard(key: number, framesСard: HTMLElement, objectCardsFi
     const descriptionCard6 = document.createElement('div');
     descriptionCard.append(descriptionCard6);
     descriptionCard6.textContent = `Stock: ${objectCardsFilter[key].stock}`;
-  }  
+  }
 }
 
 function createCardProduct(key: number, pmainContainerCards:Element, objectCardsFilter: IFilteredData[]) {
