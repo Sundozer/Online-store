@@ -174,6 +174,10 @@ function checkURL(e?: string) { // чекает юрл, чтобы заполн�
 }
 
 (function category() { // заполняет блоки элементами из даты
+  /* eslint-disable-next-line */
+  const logo = require('./assets/rsschool.svg') as string;
+  const fff = document.querySelector('.svg') as HTMLImageElement;
+  fff.src = logo;
   const arr: string[] = [];
   const array: string[] = [];
   const categories = document.querySelector('.aside-block_item-types')!;
