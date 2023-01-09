@@ -51,7 +51,7 @@ export function AlladdEventListenerCards() {
     const target = event.target as HTMLSelectElement;
     // debugger;
     const targetParent = target.parentElement?.parentElement;
-      if ((targetParent?.className === 'frames-card') && (target.textContent === 'DETAILS')) {
+      if ((targetParent?.className === 'frames-card' || targetParent?.className === 'frames-card-mini') && target.textContent === 'DETAILS') {
       central.style.display = 'none';
       const idTarget: string = targetParent.style.background.slice(5, -26);
       const idCart: IFilteredData = data.products.find((elem) => elem.thumbnail === idTarget)!;
