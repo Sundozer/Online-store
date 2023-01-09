@@ -10,7 +10,7 @@ export interface IFilteredData {
   category: string;
   thumbnail: string;
   images: string[];
-  }
+}
 export type Separator = {
   category: string[],
   brand: string[]
