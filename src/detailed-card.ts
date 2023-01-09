@@ -15,10 +15,18 @@ function addImgDetailedCard(arrayImgs: string[], pproductImgs:Element, pobj: IFi
 export function createDetailedCard(obj: IFilteredData) {
   const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
   detailedCard.style.display = 'flex';
+  
   deleteCardsProduct(detailedCard);
+  
   createCardsProduct([obj], detailedCard);
+  
   const productImgs = document.createElement('div');
   detailedCard.append(productImgs);
+
+  const productText = document.createElement('div');
+  detailedCard.append(productText);
+  productText.textContent = obj.description;
+
   productImgs.classList.add('productImgs');
   addImgDetailedCard(obj.images, productImgs, obj);
   const firstImg = productImgs.firstChild as HTMLElement;
