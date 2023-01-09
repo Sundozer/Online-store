@@ -8,25 +8,168 @@
 </head>
 <body class="body">
   <header class="header">
-    <div class="container">
-      header
+    <div class="header-container">
+      <div class="header-menu">
+        <h3 class="main-navigation_online-store">Online store</h1>
+        <h3 class="total-price">Cart total: 0</h1>
+        <h3 class="basket">Cart</h1>
+      </div>
     </div>
   </header>
+  
+
+  <div class="cart">
+    <div class="items-block">
+      <div class="products-center">
+        <div class="products-in-cart">
+          <div class="products-in">Products in cart</div>
+          <div class="products-list"></div>
+        </div>
+        <div class="summary-items">
+          <div class="summary-block">Summary</div>
+          <p class="products-in-block">Products: 0</p>
+          <p class="total-in-block">Total: 0</p>
+          <input type="text" class="promocode" placeholder="Input promocode"></p>
+          <button class="clear-cart-button">Clear cart</button>
+          <button class="buy-button clear-cart-button">Buy now!</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="central">
     <div class="container">
       <aside class="aside">
-        aside
+        <div class="aside-block">
+          <div class="aside-buttons">
+            <button class="burger">Show Filters</button>
+            <button class="reset-filters">Reset filters</button>
+            <button class="copied">Copy Link</button>
+          </div>
+          <div class="aside-block_category aside-block__general">
+            <div class="aside-block_title">
+              Category
+            </div>
+            <div class="aside-block_item-types"></div>
+          </div>
+          <div class="aside-block_brand aside-block__general">
+            <div class="aside-block_title">
+              Brand
+            </div>
+            <div class="aside-block_item-marks aside-block_item-types"></div>
+          </div>
+          <div class="aside-block_price aside-block__general">
+            <div class="aside-block_title">
+              Price
+            </div>
+            <div class="price-numbers">
+              <div class="lowest-price">10</div>
+              <div class="arrow">⟷</div>
+              <div class="highest-price">1749</div>
+            </div>
+            <input type="range" name="price" class="input-price1 input__price" min="10" max="1749" value="10">
+            <input type="range" name="price" class="input-price2 input__price" min="10" max="1749" value="1749">
+            <div class="track-for-sliders"></div>
+          </div>
+          <div class="aside-block_stock aside-block_price aside-block__general">
+            <div class="aside-block_title">
+              Stock
+            </div>
+            <div class="price-numbers">
+              <div class="lowest-stock">2</div>
+              <div class="arrow">⟷</div>
+              <div class="highest-stock">150</div>
+            </div>
+            
+            <input type="range" name="price" class="input-stock3 input__price" min="2" max="150" value="2">
+            <input type="range" name="price" class="input-stock4 input__price" min="2" max="150" value="150">
+            <div class="track-for-sliders"></div>
+
+
+            
+          </div>
+        </div>
+        
       </aside>
       <main class="main">
-        main
+        <div class="main-header">
+          <select class="select" name="Sort options" id="">
+            <option class="options" value="Sort options" style="color: darkgray;">Sort options</option>
+            <option class="options" value="price ASC">Sort by price ASC</option>
+            <option class="options" value="price DESC">Sort by price DESC</option>
+            <option class="options" value="rating ASC">Sort by rating ASC</option>
+            <option class="options" value="rating DESC">Sort by rating DESC</option>
+            <option class="options" value="discount ASC">Sort by discount ASC</option>
+            <option class="options" value="discount DESC">Sort by discount DESC</option>
+          </select>
+            <div class="wrap-span">
+              <span class="span-main-header">Found:</span>
+              <span class="span-main-header span-count"></span>
+            </div>
+          <input class="search-main-header" placeholder="Search product" type="search" name="" id="">
+          <div class="wrap-buttons">
+            <button class="buttons grid-wrap">
+              <div class="grid grid-big"></div>
+              <div class="grid grid-big"></div>
+            </button>
+            <button class="buttons grid-wrap ">
+              <div class="grid"></div>
+              <div class="grid"></div>
+              <div class="grid"></div>
+              <div class="grid"></div>
+              <div class="grid"></div>
+              <div class="grid"></div>
+            </button>
+          </div>
+        </div>
+        <div class="main-container-cards">
+
+        </div>
       </main>
     </div>
   </div>
 
+  <div class="payment">
+    <form class="pay-block" onsubmit="return false">
+      <p>Personal details</p>
+      <input type="text" placeholder="Name" required>
+      <input type="tel" placeholder="Phone number" required>
+      <input type="text" placeholder="Delivery address" required>
+      <input type="email" placeholder="Email" required>
+      <p>Credit card details</p>
+      <div class="credit-card">
+        <input type="text" placeholder="Card number" class="card-number" pattern="[0-9]{16}" required>
+        <div class="date-cvv">
+          <input type="text" placeholder="MMYY" class="card-date" pattern="[0-1][0-9]{3}" required>
+          <input type="text" placeholder="CVV" class="cvv" pattern="[0-9]{3}"  required>
+        </div>
+      </div>
+      <input type="submit" placeholder="Send" class="sumbit" required>
+      <!-- <button>Confirm</button> -->
+    </form>
+  </div>
+
+  <div class="page-not-found">
+    <h1 style="text-align: center; color: black;">Page not found</h1>
+  </div>
+
+  <div class="detailed-card"></div>
+ 
   <footer class="footer">
     <div class="container">
-      footer
+      <div class="foot">
+        <div class="creators">
+          <p>Site creators:</p>
+          <a href="https://github.com/Sundozer" style="color: white;">Alex Hramovich</a>
+          <a href="https://github.com/Berkut4713" style="color: white;">Anton Vecherov</a>
+        </div>
+        <!-- <img src="#" class="svg"/> -->
+        <!-- <img src="#" alt="school logo" class="svg"> -->
+        <!-- <p><a href="sample.html"><img src="images/sample.gif" width="50" 
+          height="50" alt="Пример"></a></p> -->
+        <p><a href="https://rs.school/js/"><img src="#" class="svg"/></a>School</p>
+        <p>2023 год</p>
+      </div>
     </div>
   </footer>
 </body>

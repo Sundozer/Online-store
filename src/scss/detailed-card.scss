@@ -1,0 +1,26 @@
+.detailed-card {
+  height: 350px;
+  width: 80%;
+  background-color:  rgb(102, 102, 102);
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 2px solid rgb(255, 115, 0);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.productImgs {
+  display: flex;
+  align-items: center;
+}
+.productImg {
+  width: 120px;
+  height: 120px;
+  margin: 5px;
+  border: 2px solid rgb(255, 115, 0);
+}
+.productImg-big {
+  width: 200px;
+  height: 200px;
+}

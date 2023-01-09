@@ -1,0 +1,61 @@
+.select {
+    width: 40%;
+    max-width: 150px;
+    margin-left: 20px;
+}
+.buttons {
+    border: 2px solid rgb(255, 115, 0);
+    width: 35px;
+    height: 35px;
+}
+.buttons-card {
+    width: 95px;
+    height: 35px;
+    background-color: rgb(102, 102, 102);
+    color: rgb(255, 255, 255);
+}
+
+.block {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.wrap-style {
+    background-color: rgb(102, 102, 102);
+}
+.wrap-buttons {
+    display: flex;
+    margin-right: 10px;
+    width: 80px;
+    justify-content: space-between;
+    @media (max-width: 650px) {
+      display: none;
+    }
+  }
+  
+  .wrap-span {
+    display: flex;
+  }
+  .grid {
+    border: 1px solid rgb(255, 115, 0);
+    margin-bottom: 2px;
+    width: 4px;
+    height: 4px;
+  }
+  .grid-big {
+    width: 8px;
+    height: 8px;
+  }
+  .grid-wrap {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+  }
+  .grid-wrap:hover {
+    border: 2px solid rgb(180, 200, 0);
+  }

@@ -1,0 +1,412 @@
+$header-footer: black;
+$main-color-page: rgb(255, 255, 255);
+$borders: gold;
+$aside-block-back: rgb(102, 102, 102);
+
+/*Scroll bar nav*/
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-border-radius: 10px;
+  border-radius: 5px;
+  background:#FFF;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 5px;
+  background: $aside-block-back;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(204,204,204,0.4); 
+}
+
+
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 97%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 95%;
+  cursor: pointer;
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  background: $borders;
+  cursor: pointer;
+  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+  position: relative;
+  z-index: 10;
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  height: 6px;
+  width: 12.4791%;
+  border-radius: 3px;
+  background: $aside-block-back;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 6px;
+  width: 12.4791%;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.header-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .main-navigation_online-store {
+    cursor: pointer;
+  }
+}
+
+.header-container {
+  width: 90%;
+  margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+.body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $main-color-page;
+  color: white;
+}
+.container {
+  width: 99vw;
+  margin: auto;
+  display: flex;
+  height: 100%;
+  @media (max-width: 1160px) {
+    width: 100vw;
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+
+  }
+}
+.header {
+  background-color: $header-footer;
+  width: 100%;
+}
+.central {
+  min-width: 100%;
+  min-height: 100vh;
+  justify-content: space-between;
+  .aside {
+    width: 22%;
+  }
+}
+
+.cart {
+  width: 95vw;
+  min-height: 100vh;
+  display: none;
+  
+  .items-block {
+    margin-top: 20px;
+    width: 100%;
+    .products-center {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      margin: auto;
+      .products-in-cart {
+        width: 60%;
+        background-color: $aside-block-back;
+        .products-in {
+          text-align: center;
+          background-color: $header-footer;
+          width: 90%;
+        }
+        .products-list {
+          .one-of-items {
+            display: flex;
+            margin-top: 10px;
+            border: 1px solid $borders;
+            .back-img {
+              height: 100px;
+            }
+            .product-description {
+              width: 100%;
+              text-align: center;
+              .product-title {
+                text-align: center;
+              }
+              .product-desc {
+                text-align: center;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+      .summary-items {
+        width: 38%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $aside-block-back;
+        .summary-block {
+          text-align: center;
+          background-color: $header-footer;
+          width: 100%;
+        }
+        .promocode {
+          text-align: center;
+          width: 40%;
+        }
+        .clear-cart-button {
+          background-color: $borders;
+          border-radius: 15px;
+        }
+        .buy-button {
+          margin-top: 30px;
+          width: 100px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.one-of-items {
+  display: flex;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.basket {
+  cursor: pointer;
+}
+
+.footer {
+  width: 100%;
+  background-color: $header-footer;
+}
+.item-image {
+  width: 150px;
+}
+
+.aside-block {
+  border: 2px solid $borders;
+  box-sizing: border-box;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  @media (max-width: 500px) {
+    width: 100vw;
+    height: 70px;
+  }
+  .aside-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    .burger {
+      display: none;
+      @media (max-width: 500px) {
+        display: block;
+      }
+    }
+  }
+  .aside-block__general {
+    border: 2px solid $borders;
+    border-radius: 8px;
+    width: 92%;
+    height: 25%;
+    overflow-y: hidden;
+    position: relative;
+    background-color: $aside-block-back;
+    .aside-block_title {
+      width: 100%;
+      background-color: black;
+      border-radius: 8px;
+    }
+    .aside-block_item-category {
+      width: 100%;
+      background-color: $aside-block-back;
+    }
+    .aside-block_item-marks {
+      background-color: $aside-block-back;
+    }
+    .aside-block_item-types {
+      height: 100%;
+      overflow-y: scroll;
+      background-color: $aside-block-back;
+
+    }
+    .input__price {
+      position: absolute;
+      top: 85%;
+    }
+     .track-for-sliders {
+      height: 4px;
+      width: 95%;
+      background-color: white;
+      position: absolute;
+      top: 79%;
+      z-index: 5;
+      left: 5px;
+    }
+    .price-numbers {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      position: relative;
+      left: 5%;
+      top: 5%;
+    }
+  }
+  .aside-block_price {
+    height: 13%;
+  }
+}
+.aside-block_one-of-items {
+  cursor: pointer;
+}
+
+.aside-block_category.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.aside-block_brand.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.aside-block_price.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.aside-block_stock.aside-block_price.aside-block__general {
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+
+
+
+.payment {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0 ,0,0,0.8);
+  z-index: 10;  
+  display: none; // Временно отключён, включить
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  .pay-block {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 70vh;
+    background-color: black;
+    align-items: center;
+    justify-content: space-evenly;
+    @media (max-width: 500px) {
+      width: 80%;
+    }
+    .credit-card {
+      width: 40%;
+      height: 20%;
+      background: linear-gradient(146deg, rgba(93,93,93,1) 0%, rgba(4,0,255,1) 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      .card-number {
+        width: 60%;
+      }
+      .date-cvv {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        .card-date {
+          width: 30%;
+        }
+        .cvv {
+          width: 30%;
+        }
+      }
+    }
+  }
+}
+
+.page-not-found {
+  display: none;
+  width: 100%;
+  height: 100vh;
+}
+
+.foot {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .creators {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .svg {
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(340deg) brightness(99%) contrast(102%);
+    width: 20%;
+  }
+}
