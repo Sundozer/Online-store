@@ -51,16 +51,25 @@ export function AlladdEventListenerCards() {
     const target = event.target as HTMLSelectElement;
     // debugger;
     const targetParent = target.parentElement?.parentElement;
-      if ((targetParent?.className === 'frames-card' || targetParent?.className === 'frames-card-mini') && target.textContent === 'DETAILS') {
+    if ((targetParent?.className === 'frames-card' || targetParent?.className === 'frames-card-mini') && target.textContent === 'DETAILS') {
       central.style.display = 'none';
       const idTarget: string = targetParent.style.background.slice(5, -26);
       const idCart: IFilteredData = data.products.find((elem) => elem.thumbnail === idTarget)!;
       createDetailedCard(idCart);
-    } else if (target.textContent !== 'ADD TO CART'){
+    } else if (target.textContent !== 'ADD TO CART') {
       central.style.display = 'none';
       const idTarget: string = target.style.background.slice(5, -26);
       const idCart: IFilteredData = data.products.find((elem) => elem.thumbnail === idTarget)!;
       createDetailedCard(idCart);
     }
   });
+
+
+  const copied = document.querySelector('.copied') as HTMLButtonElement;
+  copied.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+    } catch (err) {
+    }
+  })
 }
