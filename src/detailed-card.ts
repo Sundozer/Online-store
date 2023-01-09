@@ -1,5 +1,6 @@
 import { IFilteredData } from './interfaces';
 import { createCardsProduct, deleteCardsProduct } from './main';
+import {setRouteDetails} from './route'
 
 function addImgDetailedCard(arrayImgs: string[], pproductImgs:Element, pobj: IFilteredData) {
   for (let i = 0; i < arrayImgs.length; i++) {
@@ -33,4 +34,5 @@ export function createDetailedCard(obj: IFilteredData) {
   firstImg.classList.add('productImg-big');
   // productImgs.firstChild.classList.add('productImg-big');
   // debugger;
+  setRouteDetails(obj)
 }
