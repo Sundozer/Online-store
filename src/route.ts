@@ -1,6 +1,4 @@
-import {IFilteredData} from './interfaces'
-import {createDetailedCard} from './detailed-card'
-import data from './data'
+import { IFilteredData } from './interfaces';
 
 type Obj = {
   category: string[],
@@ -132,6 +130,6 @@ export function checkPage() {
 }
 
 export function setRouteDetails(obj: IFilteredData) {
-  let rou = 'details-'+ obj.title.replace(/ /g, '-');
+  const rou = `details-${obj.title.replace(/ /g, '-')}`;
   window.history.pushState({}, '', rou);
 }

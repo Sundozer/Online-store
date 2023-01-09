@@ -1,6 +1,7 @@
 import { IFilteredData } from './interfaces';
 import { createCardsProduct, deleteCardsProduct } from './main';
-import {setRouteDetails} from './route'
+/* eslint-disable-next-line */
+import { setRouteDetails } from './route';
 
 function addImgDetailedCard(arrayImgs: string[], pproductImgs:Element, pobj: IFilteredData) {
   for (let i = 0; i < arrayImgs.length; i++) {
@@ -16,11 +17,11 @@ function addImgDetailedCard(arrayImgs: string[], pproductImgs:Element, pobj: IFi
 export function createDetailedCard(obj: IFilteredData) {
   const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
   detailedCard.style.display = 'flex';
-  
+
   deleteCardsProduct(detailedCard);
-  
+
   createCardsProduct([obj], detailedCard);
-  
+
   const productImgs = document.createElement('div');
   detailedCard.append(productImgs);
 
@@ -34,5 +35,5 @@ export function createDetailedCard(obj: IFilteredData) {
   firstImg.classList.add('productImg-big');
   // productImgs.firstChild.classList.add('productImg-big');
   // debugger;
-  setRouteDetails(obj)
+  setRouteDetails(obj);
 }

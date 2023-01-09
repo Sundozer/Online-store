@@ -69,7 +69,7 @@ function createCardProduct(key: number, pmainContainerCards:Element, objectCards
     framesСard.classList.remove('frames-card');
     framesСard.classList.add('frames-card-mini');
   } else {
-    localStorage.setItem('selectedSize', 'big')
+    localStorage.setItem('selectedSize', 'big');
     framesСard.classList.remove('frames-card-mini');
     framesСard.classList.add('frames-card');
   }
