@@ -25,7 +25,7 @@ function addButtonCard(framesСard: HTMLElement, textButton: string) {
 }
 
 function addBackgroundImg(key: number, framesСard: HTMLElement, objectCardsFilter: IFilteredData[]) {
-  framesСard.style.background = `url(${objectCardsFilter[key].images[0]})`;
+  framesСard.style.background = `url(${objectCardsFilter[key].thumbnail})`;
   framesСard.style.backgroundRepeat = 'no-repeat';
   framesСard.style.backgroundSize = 'cover';
 }
@@ -81,17 +81,17 @@ function createCardProduct(key: number, pmainContainerCards:Element, objectCards
   addButtonCard(block, 'DETAILS');
 }
 
-export function createCardsProduct(objectCardsFilter: IFilteredData[]) {
+export function createCardsProduct(objectCardsFilter: IFilteredData[], pmainContainerCards = mainContainerCards) {
   // sortDatePriceASC(objectCardsFilter);
-  if (mainContainerCards !== null) {
+  if (pmainContainerCards !== null) {
     Object.keys(objectCardsFilter).forEach((key) => {
-      createCardProduct(+key, mainContainerCards, objectCardsFilter);
+      createCardProduct(+key, pmainContainerCards, objectCardsFilter);
     });
   }
 }
 
-export function deleteCardsProduct() {
-  if (mainContainerCards !== null) {
-    mainContainerCards.replaceChildren();
+export function deleteCardsProduct(pmainContainerCards = mainContainerCards) {
+  if (pmainContainerCards !== null) {
+    pmainContainerCards.replaceChildren();
   }
 }
