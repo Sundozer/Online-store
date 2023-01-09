@@ -16,7 +16,7 @@ export function createDetailedCard(obj: IFilteredData) {
   const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
   detailedCard.style.display = 'flex';
   deleteCardsProduct(detailedCard);
-  createCardsProduct([obj], detailedCard);  
+  createCardsProduct([obj], detailedCard);
   const productImgs = document.createElement('div');
   detailedCard.append(productImgs);
   productImgs.classList.add('productImgs');
