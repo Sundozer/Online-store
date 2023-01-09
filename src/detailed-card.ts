@@ -8,7 +8,8 @@ export function createDetailedCard(obj: IFilteredData) {
   // const detailedCart = document.createElement('div');
   const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
   detailedCard.style.display = 'block';
-  createCardsProduct([obj]);
+  deleteCardsProduct(detailedCard);
+  createCardsProduct([obj], detailedCard);
   // const innerDiv = document.createElement('div');
   // const productTitle = document.createElement('p');
   // const productDesc = document.createElement('p');
