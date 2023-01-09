@@ -8,7 +8,7 @@ import data from './data';
 import newData from './newData';
 import { showFilter } from './mobile';
 import {
-  setRoute, getRoute, checkPage, showMain, notFound,
+  setRoute, getRoute, checkPage, showMain, notFound, checkDetails
 } from './route';
 import { createCardsProduct, deleteCardsProduct } from './main';
 import { IFilteredData, Separator, FilterItems } from './interfaces';
@@ -321,6 +321,9 @@ document.querySelector('.reset-filters')!.addEventListener('click', resetFilters
 document.querySelector('.main-navigation_online-store')!.addEventListener('click', showMain);
 
 window.addEventListener('popstate', () => {
+  if (window.location.pathname.slice(1, 8) === 'details') {
+    checkDetails(window.location.pathname)
+  }
   if (window.location.search.length < 2) {
     activeFilter = {
       category: [],

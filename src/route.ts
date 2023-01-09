@@ -1,3 +1,5 @@
+import {IFilteredData} from './interfaces'
+
 type Obj = {
   category: string[],
   brand: string[],
@@ -125,4 +127,18 @@ export function checkPage() {
   if (window.location.pathname === '/') {
     showMain();
   }
+}
+
+export function setRouteDetails(obj: IFilteredData) {
+  let rou = 'details-'+ obj.title.replace(/ /g, '-');
+  window.history.pushState({}, '', rou);
+}
+
+export function checkDetails(str: string) {
+  console.log(str);
+  let newString:string = str.slice(9);
+  if (newString.includes('-')) {
+    newString = newString.replace(/-/g, ' ')
+  };
+  console.log(newString)
 }
