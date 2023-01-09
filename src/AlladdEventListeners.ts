@@ -49,17 +49,18 @@ export function AlladdEventListenerCards() {
   const mainContainerCards = document.querySelector('.main-container-cards');
   mainContainerCards!.addEventListener('click', (event) => {
     const target = event.target as HTMLSelectElement;
-    if (target.className === 'buttons buttons-card') {
-      // сюда нужно вставить отработку функций по нажатию на кнопку ADD TO CART
-      // alert('AlladdEventListener.ts строка 54 нужно вставить отработку функций по нажатию на кнопку ADD TO CART');
-    } else {
-      // debugger;
+    // debugger;
+    const targetParent = target.parentElement?.parentElement;
+      if ((targetParent?.className === 'frames-card') && (target.textContent === 'DETAILS')) {
       central.style.display = 'none';
-      const idTarget: string = target.style.background.slice(5, -26);
-      // console.log(.slice(5,-26));
+      const idTarget: string = targetParent.style.background.slice(5, -26);
       const idCart: IFilteredData = data.products.find((elem) => elem.thumbnail === idTarget)!;
       createDetailedCard(idCart);
-      // debugger;
+    } else if (target.textContent !== 'ADD TO CART'){
+      central.style.display = 'none';
+      const idTarget: string = target.style.background.slice(5, -26);
+      const idCart: IFilteredData = data.products.find((elem) => elem.thumbnail === idTarget)!;
+      createDetailedCard(idCart);
     }
   });
 }
