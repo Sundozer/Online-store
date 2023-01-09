@@ -151,7 +151,7 @@ input[type=range]::-ms-thumb {
   display: none;
   
   .items-block {
-    margin: 20px;
+    margin-top: 20px;
     width: 100%;
     .products-center {
       width: 100%;
@@ -238,6 +238,7 @@ input[type=range]::-ms-thumb {
 
 .aside-block {
   border: 2px solid $borders;
+  box-sizing: border-box;
   border-radius: 8px;
   display: flex;
   justify-content: space-evenly;

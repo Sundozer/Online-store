@@ -1,6 +1,7 @@
 .main {
   width: 88%;
   border: 2px solid rgb(255, 115, 0);
+  box-sizing: border-box;
   // border: 2px solid rgba(161, 159, 27, 0.377);
   @media (max-width: 500px) {
     width: 100%;
