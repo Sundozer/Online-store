@@ -39,9 +39,11 @@ export function showCart() {
 }
 
 export function clearButtonCart() {
-  let ifConfirm = confirm('Clear cart?')
+  /* eslint-disable-next-line */
+  const ifConfirm = confirm('Clear cart?');
   if (ifConfirm === true) {
-    console.log(confirm)
+    /* eslint-disable-next-line */
+    console.log(confirm);
     localStorage.removeItem('shoppingList');
     localStorage.removeItem('summaryPrice');
     document.querySelector('.total-price')!.innerHTML = 'Cart total: 0';
