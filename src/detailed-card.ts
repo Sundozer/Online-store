@@ -21,5 +21,4 @@ export function createDetailedCard(obj: IFilteredData) {
   detailedCard.append(productImgs);
   productImgs.classList.add('productImgs');
   addImgDetailedCard(obj.images, productImgs, obj);
-
 }
