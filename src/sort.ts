@@ -31,5 +31,4 @@ export function sortDate(value: string, objectCardsFilter: IFilteredData[]) {
     default:
       break;
   }
-  // localStorage.setItem('selectedSort', value);
 }

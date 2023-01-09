@@ -65,12 +65,12 @@ function addDescriptionCard(key: number, framesСard: HTMLElement, objectCardsFi
 
 function createCardProduct(key: number, pmainContainerCards:Element, objectCardsFilter: IFilteredData[]) {
   const framesСard = document.createElement('div');
-  if (localStorage.getItem('selectedSize') === 'big') {
-    framesСard.classList.remove('frames-card-mini');
-    framesСard.classList.add('frames-card');
-  } else {
+  if (localStorage.getItem('selectedSize') === 'small') {
     framesСard.classList.remove('frames-card');
     framesСard.classList.add('frames-card-mini');
+  } else {
+    framesСard.classList.remove('frames-card-mini');
+    framesСard.classList.add('frames-card');
   }
   pmainContainerCards.append(framesСard);
   addBackgroundImg(key, framesСard, objectCardsFilter);
