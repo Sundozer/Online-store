@@ -5,4 +5,17 @@
   margin: 0 auto;
   margin-top: 50px;
   border: 2px solid rgb(255, 115, 0);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.productImgs {
+  display: flex;
+}
+.productImg {
+  width: 120px;
+  height: 120px;
+  margin: 20px;
+  border: 2px solid rgb(255, 115, 0);
 }

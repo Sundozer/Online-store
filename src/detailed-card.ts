@@ -1,34 +1,25 @@
 import { IFilteredData } from './interfaces';
 import { createCardsProduct, deleteCardsProduct } from './main';
 
-export function createDetailedCard(obj: IFilteredData) {
+function addImgDetailedCard(arrayImgs: string[], pproductImgs:Element, pobj: IFilteredData) {
+  for (let i = 0; i < arrayImgs.length; i++) {
+    const productImg = document.createElement('div');
+    pproductImgs.append(productImg);
+    productImg.classList.add('productImg');
+    productImg.style.background = `url(${pobj.images[i]})`;
+    productImg.style.backgroundRepeat = 'no-repeat';
+    productImg.style.backgroundSize = 'cover';
+  }
+}
 
-  // const container = document.querySelector('.container') as HTMLElement;  
-  // const img = document.createElement('img');
-  // const detailedCart = document.createElement('div');
+export function createDetailedCard(obj: IFilteredData) {
   const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
-  detailedCard.style.display = 'block';
+  detailedCard.style.display = 'flex';
   deleteCardsProduct(detailedCard);
-  createCardsProduct([obj], detailedCard);
-  // const innerDiv = document.createElement('div');
-  // const productTitle = document.createElement('p');
-  // const productDesc = document.createElement('p');
-  // const productCost = document.createElement('div');
-  // const delButton = document.createElement('button');
-  // central.style.display = 'block';
-  // container.append(detailedCart);
-  // detailedCart.classList.add('card');
-  // innerDiv.classList.add('product-description');
-  // img.classList.add('back-img');
-  // productTitle.classList.add('product-title');
-  // productDesc.classList.add('product-desc');
-  // div.append(img);
-  // img.src = `${obj.images[0]}`;
-  // div.append(innerDiv);
-  // div.append(productCost);
-  // innerDiv.append(productTitle);
-  // innerDiv.append(productDesc);
-  // productTitle.innerHTML = `${obj.title}`;
-  // productDesc.innerHTML = `${obj.description}`;
-  // productCost.innerHTML = `<p>${obj.price}$</p><button class="del-button">Del</button>`;
+  createCardsProduct([obj], detailedCard);  
+  const productImgs = document.createElement('div');
+  detailedCard.append(productImgs);
+  productImgs.classList.add('productImgs');
+  addImgDetailedCard(obj.images, productImgs, obj);
+
 }
