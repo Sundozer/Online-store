@@ -1,12 +1,14 @@
 import { IFilteredData } from './interfaces';
+import { createCardsProduct, deleteCardsProduct } from './main';
 
 export function createDetailedCard(obj: IFilteredData) {
 
-  const container = document.querySelector('.container') as HTMLElement;  
+  // const container = document.querySelector('.container') as HTMLElement;  
   // const img = document.createElement('img');
   // const detailedCart = document.createElement('div');
   const detailedCard = document.querySelector('.detailed-card') as HTMLElement;
   detailedCard.style.display = 'block';
+  createCardsProduct([obj]);
   // const innerDiv = document.createElement('div');
   // const productTitle = document.createElement('p');
   // const productDesc = document.createElement('p');
