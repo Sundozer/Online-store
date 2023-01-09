@@ -21,4 +21,8 @@ export function createDetailedCard(obj: IFilteredData) {
   detailedCard.append(productImgs);
   productImgs.classList.add('productImgs');
   addImgDetailedCard(obj.images, productImgs, obj);
+  const firstImg = productImgs.firstChild as HTMLElement;
+  firstImg.classList.add('productImg-big');
+  // productImgs.firstChild.classList.add('productImg-big');
+  // debugger;
 }

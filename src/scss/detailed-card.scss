@@ -12,14 +12,15 @@
 }
 .productImgs {
   display: flex;
+  align-items: center;
 }
 .productImg {
   width: 120px;
   height: 120px;
-  margin: 20px;
+  margin: 5px;
   border: 2px solid rgb(255, 115, 0);
 }
 .productImg-big {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
